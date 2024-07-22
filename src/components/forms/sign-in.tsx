@@ -1,0 +1,101 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { rootAdminSignInAction } from "@/actions/auth";
+import { Loader } from "lucide-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+const formSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export function SignInForm() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      console.log(values);
+      setIsLoading(true);
+
+      await rootAdminSignInAction({
+        email: values.email,
+        password: values.password,
+      });
+      router.push("/dashboard");
+      setIsLoading(false);
+    } catch (err) {
+      // displaying an error to the user
+
+      console.log(err);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <div className="w-[500px] h-[350px] shadow-xl border-2 rounded-2xl p-8 bg-white">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input placeholder="email@gmail.com..." {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Mot de passe</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="***..." {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" size={"lg"} className="w-full">
+            <Loader />
+            se connecter
+          </Button>
+        </form>
+      </Form>
+    </div>
+  );
+}
