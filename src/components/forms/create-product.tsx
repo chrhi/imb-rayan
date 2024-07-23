@@ -82,6 +82,7 @@ export function CreateProductForm() {
 
   const { mutate, error, mutateAsync, isPending } = useMutation({
     mutationFn: async (data: Inputs) => {
+      setLoading(true);
       try {
         if (isArrayOfFile(data.images)) {
           toast.promise(
@@ -101,16 +102,16 @@ export function CreateProductForm() {
               }),
 
             {
-              loading: "Creating new product...",
-              success: "Product added successfully.",
-              error: "Error creating product.",
+              loading: "Création d'un nouveau produit...",
+              success: "Produit ajouté avec succès.",
+              error: "Erreur lors de la création du produit.",
             }
           );
         } else {
           await createProduct({ ...data, images: [] });
 
           router.push("/dashboard/products");
-          toast.success("Product added successfully.");
+          toast.success("Erreur lors de la création du produit.");
         }
       } catch (err) {
         catchError(err);
@@ -122,7 +123,6 @@ export function CreateProductForm() {
     console.log(data);
     setLoading(true);
     await mutateAsync(data);
-    setLoading(false);
   }
   return (
     <div className="w-full h-[300px] ">
@@ -203,10 +203,8 @@ export function CreateProductForm() {
                   )}
                 />
 
-                <Button disabled={isPending} type="submit">
-                  {isPending && (
-                    <Loader className="mr-2 w04 h-4 animate-spin" />
-                  )}
+                <Button disabled={loading} type="submit">
+                  {loading && <Loader className="mr-2 w04 h-4 animate-spin" />}
                   Sauvegarder les modifications
                 </Button>
               </div>

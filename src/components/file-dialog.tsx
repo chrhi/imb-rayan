@@ -129,7 +129,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[480px]">
         <p className="absolute left-5 top-4 text-base font-medium text-muted-foreground">
-          Upload your images
+          Téléchargez vos images
         </p>
         <div
           {...getRootProps()}
@@ -165,16 +165,19 @@ export function FileDialog<TFieldValues extends FieldValues>({
                 aria-hidden="true"
               />
               <p className="mt-2 text-base font-medium text-muted-foreground">
-                Drag {`'n'`} drop file here, or click to select file
+                Faites glisser et déposez le fichier ici, ou cliquez pour
+                sélectionner le fichier
               </p>
               <p className="text-sm text-slate-500">
-                Please upload file with size less than {formatBytes(maxSize)}
+                Veuillez télécharger un fichier d&apos;une taille inférieure à{" "}
+                {formatBytes(maxSize)}
               </p>
             </div>
           )}
         </div>
         <p className="text-center text-sm font-medium text-muted-foreground">
-          You can upload up to {maxFiles} {maxFiles === 1 ? "file" : "files"}
+          Vous pouvez télécharger jusqu&apos;à{maxFiles}{" "}
+          {maxFiles === 1 ? "file" : "files"}
         </p>
         {files?.length ? (
           <div className="grid gap-5">
@@ -198,7 +201,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
             onClick={() => setFiles(null)}
           >
             <TrashIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-            Remove All
+            Enlever tout
             <span className="sr-only">Remove all</span>
           </Button>
         ) : null}
@@ -288,7 +291,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                 size="icon"
                 className="h-7 w-7"
               >
-                <CropIcon className="h-4 w-4 text-white" aria-hidden="true" />
+                <CropIcon className="h-4 w-4 text-black" aria-hidden="true" />
                 <span className="sr-only">Crop image</span>
               </Button>
             </DialogTrigger>
@@ -359,7 +362,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
             setFiles(files.filter((_, j) => j !== i));
           }}
         >
-          <Cross2Icon className="h-4 w-4 text-white" aria-hidden="true" />
+          <Cross2Icon className="h-4 w-4 text-black" aria-hidden="true" />
           <span className="sr-only">Remove file</span>
         </Button>
       </div>

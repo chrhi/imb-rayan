@@ -18,6 +18,7 @@ import { rootAdminSignInAction } from "@/actions/auth";
 import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string(),
@@ -41,18 +42,25 @@ export function SignInForm() {
       console.log(values);
       setIsLoading(true);
 
-      await rootAdminSignInAction({
-        email: values.email,
-        password: values.password,
-      });
+      toast.promise(
+        rootAdminSignInAction({
+          email: values.email,
+          password: values.password,
+        }),
+        {
+          loading: "nous validons vos informations d&apos;identification...",
+          success: (data) => {
+            return `succès`;
+          },
+          error: "une erreur",
+        }
+      );
+
       router.push("/dashboard");
     } catch (err) {
       // displaying an error to the user
 
       console.log(err);
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
     }
   }
 

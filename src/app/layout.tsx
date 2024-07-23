@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Providers>
           <div className="w-full h-fit  relative">{children}</div>
-          <Toaster />
+          <Toaster closeButton />
         </Providers>
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,8 +15,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { isArrayOfFile } from "@/lib/utils";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Product = {
   id: string;
   images: {
@@ -59,6 +58,15 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "status",
     header: "Status",
+    cell: ({ row }) => {
+      return (
+        <div className="">
+          <Badge variant="default">
+            {row.original.status === "DARFT" ? "Brouillon" : "Publié"}
+          </Badge>
+        </div>
+      );
+    },
   },
   {
     id: "actions",
@@ -77,9 +85,11 @@ export const columns: ColumnDef<Product>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit product</DropdownMenuItem>
+            <DropdownMenuItem disabled>Edit product</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete Product</DropdownMenuItem>
+            <DropdownMenuItem disabled className="text-red-500">
+              Delete Product
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

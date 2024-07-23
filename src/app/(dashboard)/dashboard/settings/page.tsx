@@ -1,6 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { DataTable } from "@/components/table";
-import { columns, Product } from "@/components/table/columns/products";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,10 +7,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { getAllProducts } from "@/db/data-access/products";
 
-import { PlusCircle } from "lucide-react";
+import { getAllProducts } from "@/db/data-access/products";
 
 import type { FC } from "react";
 
@@ -59,7 +56,7 @@ const page: FC = async ({}) => {
           </Breadcrumb>
         </div>
         <div className="w-full h-[50px] flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-start">Tous les clients</h1>
+          <h1 className="text-2xl font-bold text-start">Paramètres</h1>
 
           {/* <Link
             href={"/dashboard/products/create"}
@@ -69,11 +66,12 @@ const page: FC = async ({}) => {
             <PlusCircle className="w-4 h-4 mr-2" />
             Ajouter un client
           </Link> */}
-          <Button disabled>
-            <PlusCircle className="w-4 h-4 mr-2" />
-            Ajouter un client
-          </Button>
         </div>
+      </div>
+      <div className="w-full h-[200px] flex items-center justify-center">
+        <h1 className="text-3xl font-bold text-start">
+          cette section sera ajoutée bientôt
+        </h1>
       </div>
     </MaxWidthWrapper>
   );
