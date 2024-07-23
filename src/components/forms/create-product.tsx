@@ -203,8 +203,10 @@ export function CreateProductForm() {
                   )}
                 />
 
-                <Button disabled={loading} type="submit">
-                  {loading && <Loader className="mr-2 w04 h-4 animate-spin" />}
+                <Button disabled={isPending} type="submit">
+                  {isPending && (
+                    <Loader className="mr-2 w04 h-4 animate-spin" />
+                  )}
                   Sauvegarder les modifications
                 </Button>
               </div>
