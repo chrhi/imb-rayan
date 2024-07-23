@@ -9,7 +9,7 @@ import type { FC } from "react";
 
 const Footer: FC = ({}) => {
   return (
-    <div className="w-full h-fit md:h-[500px] bg-black flex flex-col justify-end ">
+    <div className="w-full h-fit md:h-[500px] bg-primary flex flex-col justify-end ">
       <MaxWidthWrapper className="w-full h-fit md:h-[300px]">
         <div className="w-full h-fit md:h-[300px]  grid grid-cols-1 md:grid-cols-5  ">
           <div className=" col-span-1 md:col-span-2 w-full h-full flex flex-col justify-between p-4 gap-y-4">
@@ -17,20 +17,29 @@ const Footer: FC = ({}) => {
               <div className="w-[100px] h-[100px] bg-white rounded-xl flex items-center justify-center">
                 <Image alt="the logo" src="/logo.png" width={70} height={70} />
               </div>
-              <span className="text-white text-xl text-start ">
-                Abonnez-vous à notre newsletter pour les dernières mises à jour
-                et offres.
-              </span>
-            </div>
-            <Button
-              size="lg"
-              className="w-[80%] mr-auto text-lg flex justify-between py-4 h-[60px] bg-white rounded-full  "
-            >
-              Entrer votre Email
-              <div className="w-[40px] h-[30px] bg-black rounded-full flex items-center justify-center">
-                <ExternalLink className="w-4 h-4 text-white" />
+
+              <div className="w-full h-fit flex flex-col gap-y-1 pl-0 text-white">
+                <p className="text-md text-whitefont-semibold">
+                  I.M.B Industrie Sarl
+                </p>
+                <p className="text-sm">
+                  1, bd Mohamed Khemisti 16100 Dar El Beida Alger -Algérie
+                </p>
+                <p className="text-sm">
+                  <span className="font-bold">TEL :</span> +213 23 67 61 62 – 63
+                  – 64
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  <span className="font-bold">FAX :</span> +213 23 67 61 65 – 66
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  <span className="font-bold">E-mail :</span>{" "}
+                  info@imb-industrie.com
+                </p>
               </div>
-            </Button>
+            </div>
           </div>
           <div className="col-span-1 w-full h-full flex flex-col gap-y-4 p-4">
             <Link href="#">
@@ -68,12 +77,26 @@ const Footer: FC = ({}) => {
               <span className="text-gray-50 ">YouTube</span>
             </Link>
           </div>
-          <div className="col-span-1 w-full h-full flex flex-col justify-start items-end"></div>
+          <div className="col-span-1 w-full h-full flex flex-col gap-y-4 p-4">
+            <Link href="#">
+              <span className="text-white  text-lg font-bold">
+                politique d&apos;entreprise
+              </span>
+            </Link>
+            <Link href="#">
+              <span className="text-gray-50 ">
+                politique de confidentialité
+              </span>
+            </Link>
+            <Link href="#">
+              <span className="text-gray-50 ">politique après vente</span>
+            </Link>
+          </div>
         </div>
       </MaxWidthWrapper>
       <MaxWidthWrapper>
-        <div className="w-full h-[100px] md:h-[80px] border-t mt-4 border-white flex items-center justify-center ">
-          <span className="text-xs text-white">
+        <div className="w-full h-[100px] md:h-[80px] border-t mt-4 border-gray-200 flex items-center justify-center md:justify-start ">
+          <span className="text-xs  text-white">
             IMB Industrie Étude,conception et fabrication d&apos;équipement des
             cuisines professionnelles en Algérie .© 2024 Touts Droits Réservés.
             |{" "}
