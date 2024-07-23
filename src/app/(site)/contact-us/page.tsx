@@ -6,7 +6,7 @@ const Page: FC = () => {
   return (
     <div className="w-full min-h-screen h-fit  ">
       <MaxWidthWrapper className="w-full h-fit">
-        <div className="w-full h-[700px] grid grid-cols-1 md:grid-cols-2 ">
+        <div className="w-full h-fit min-h-[700px] grid grid-cols-1 md:grid-cols-2 ">
           <div className="w-full h-full flex flex-col gap-y-4 p-20 pl-0">
             <h1 className="text-5xl font-bold text-start">
               N&apos;hésitez pas à nous contacter
