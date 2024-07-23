@@ -72,10 +72,6 @@ const page: FC = async ({}) => {
             Ajouter un client
           </Button>
         </div>
-        <div className="  my-4 bg-white">
-          {/* @ts-ignore */}
-          <DataTable columns={columns} data={data} />
-        </div>
       </div>
     </MaxWidthWrapper>
   );
