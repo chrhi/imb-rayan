@@ -8,11 +8,10 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { getAllProducts } from "@/db/data-access/products";
-import { cn } from "@/lib/utils";
+
 import { PlusCircle } from "lucide-react";
-import Link from "next/link";
 
 import type { FC } from "react";
 
@@ -52,27 +51,28 @@ const page: FC = async ({}) => {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard/products">
-                  Products
+                <BreadcrumbLink href="/dashboard/settings">
+                  Settings
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
         <div className="w-full h-[50px] flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-start">Tous les produits</h1>
+          <h1 className="text-2xl font-bold text-start">Tous les clients</h1>
 
-          <Link
+          {/* <Link
             href={"/dashboard/products/create"}
             className={cn(buttonVariants())}
+            
           >
             <PlusCircle className="w-4 h-4 mr-2" />
-            Ajouter un produit
-          </Link>
-        </div>
-        <div className="  my-4 bg-white">
-          {/* @ts-ignore */}
-          <DataTable columns={columns} data={data} />
+            Ajouter un client
+          </Link> */}
+          <Button disabled>
+            <PlusCircle className="w-4 h-4 mr-2" />
+            Ajouter un client
+          </Button>
         </div>
       </div>
     </MaxWidthWrapper>
