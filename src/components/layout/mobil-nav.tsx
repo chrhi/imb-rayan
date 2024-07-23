@@ -30,7 +30,7 @@ export default function MobileNav() {
             <span className="text-primary">IMB</span> industrie
           </SheetTitle>
           <SheetDescription>
-            Dar Academy Institus de formations
+            Fourniture d&apos;équipements pour grandes cuisines
           </SheetDescription>
         </SheetHeader>
         <div className="w-full flex h-[90%] mt-4 flex-col items-start gap-4 py-4">
