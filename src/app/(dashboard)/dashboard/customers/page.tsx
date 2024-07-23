@@ -10,9 +10,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { getAllProducts } from "@/db/data-access/products";
-import { cn } from "@/lib/utils";
+
 import { PlusCircle } from "lucide-react";
-import Link from "next/link";
 
 import type { FC } from "react";
 

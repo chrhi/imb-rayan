@@ -45,7 +45,7 @@ export default function MobileNav() {
           <Link
             onClick={() => setOpen(false)}
             key={898}
-            href={"/about-us"}
+            href={"/products"}
             className={buttonVariants({ variant: "ghost" })}
           >
             Produits
@@ -53,7 +53,7 @@ export default function MobileNav() {
           <Link
             onClick={() => setOpen(false)}
             key={338}
-            href={"/formations"}
+            href={"/services"}
             className={buttonVariants({ variant: "ghost" })}
           >
             Services
@@ -61,7 +61,7 @@ export default function MobileNav() {
           <Link
             onClick={() => setOpen(false)}
             key={98768}
-            href={"/contact-us"}
+            href={"/blog"}
             className={buttonVariants({ variant: "ghost" })}
           >
             Blog
