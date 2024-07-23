@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Providers from "@/components/providers";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 
 import "./globals.css";
 
