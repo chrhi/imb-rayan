@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -47,7 +46,6 @@ export function SignInForm() {
         password: values.password,
       });
       router.push("/dashboard");
-      setIsLoading(false);
     } catch (err) {
       // displaying an error to the user
 
@@ -90,8 +88,13 @@ export function SignInForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" size={"lg"} className="w-full">
-            <Loader />
+          <Button
+            disabled={isLoading}
+            type="submit"
+            size={"lg"}
+            className="w-full"
+          >
+            {isLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
             se connecter
           </Button>
         </form>
