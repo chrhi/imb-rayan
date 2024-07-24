@@ -9,6 +9,7 @@ import MobileNav from "./mobil-nav";
 import { usePathname } from "next/navigation";
 import { DrawerDialogQuote } from "../modals/quote";
 import { useRouter } from "next13-progressbar";
+import Basket from "../basket";
 
 interface NavBarProps {}
 
@@ -48,7 +49,7 @@ const NavBar: FC = ({}) => {
             onClick={() => router.push("/products")}
           >
             {" "}
-            Magasin
+            Produits
           </Button>
           <Button
             variant={"ghost"}
@@ -66,7 +67,7 @@ const NavBar: FC = ({}) => {
             onClick={() => router.push("/blog")}
           >
             {" "}
-            Blog
+            A Propos
           </Button>
           <Button
             variant={"ghost"}
@@ -78,7 +79,7 @@ const NavBar: FC = ({}) => {
             {" "}
             Contactez-nous
           </Button>
-          <DrawerDialogQuote />
+          <Basket />
         </div>
         <MobileNav />
       </MaxWidthWrapper>

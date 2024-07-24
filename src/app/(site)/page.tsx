@@ -13,9 +13,8 @@ export default function Home() {
       <Banner />
       <main className="flex min-h-screen flex-col items-center justify-between mb-10 ">
         <MaxWidthWrapper>
-          <FadeIn>
-            <SucessClient />
-          </FadeIn>
+          <SucessClient />
+
           <FadeIn>
             <CountBannerUp />
           </FadeIn>
