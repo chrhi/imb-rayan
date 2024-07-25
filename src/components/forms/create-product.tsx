@@ -21,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "../ui/textarea";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useState } from "react";
 import { FileDialog } from "../file-dialog";
@@ -34,18 +33,20 @@ import { Zoom } from "../zoom-image";
 import Image from "next/image";
 import { createProduct } from "@/actions/products";
 import { Loader } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamically import React Quill to avoid SSR issues
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const productSchema = z.object({
   name: z.string().min(1, {
     message: "Must be at least 1 character",
   }),
-  description: z.string(),
+  description: z.any(),
 
   status: z.string(),
-  price: z.string().regex(/^\d+(\.\d{1,2})?$/, {
-    message: "Must be a valid price",
-  }),
-
+  range: z.string(),
+  company: z.string(),
   images: z
     .unknown()
     .refine((val) => {
@@ -73,10 +74,9 @@ export function CreateProductForm() {
     resolver: zodResolver(productSchema),
     defaultValues: {
       name: "",
-      description: "",
       status: "",
-      price: "",
       images: "",
+      description: {},
     },
   });
 
@@ -96,7 +96,11 @@ export function CreateProductForm() {
                 return formattedImages ?? null;
               })
               .then(async (images) => {
-                await createProduct({ ...data, images: images ?? [] });
+                await createProduct({
+                  ...data,
+                  description: data.description ?? "",
+                  images: images ?? [],
+                });
 
                 router.push("/dashboard/products");
               }),
@@ -108,7 +112,11 @@ export function CreateProductForm() {
             }
           );
         } else {
-          await createProduct({ ...data, images: [] });
+          await createProduct({
+            ...data,
+            description: data.description ?? "",
+            images: [],
+          });
 
           router.push("/dashboard/products");
           toast.success("Erreur lors de la création du produit.");
@@ -144,20 +152,7 @@ export function CreateProductForm() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Prix</FormLabel>
-                    <FormControl>
-                      <Input placeholder="0.00" {...field} />
-                    </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="description"
@@ -165,19 +160,55 @@ export function CreateProductForm() {
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Type your description here."
-                        id="message"
+                      <ReactQuill
+                        value={field.value || ""}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="images"
+                render={({ field }) => (
+                  <FormItem className="flex w-full flex-col gap-1.5">
+                    <FormLabel>Images</FormLabel>
+                    {files?.length ? (
+                      <div className="flex items-center gap-2">
+                        {files.map((file, i) => (
+                          <Zoom key={i}>
+                            <Image
+                              src={file.preview}
+                              alt={file.name}
+                              className="h-20 w-20 shrink-0 rounded-md object-cover object-center"
+                              width={80}
+                              height={80}
+                            />
+                          </Zoom>
+                        ))}
+                      </div>
+                    ) : null}
+                    <FormControl>
+                      <FileDialog
+                        setValue={form.setValue}
+                        name="images"
+                        maxFiles={3}
+                        maxSize={1024 * 1024 * 4}
+                        files={files}
+                        setFiles={setFiles}
+                        isUploading={isUploading}
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
             </div>
 
             <div className="w-full h-full   flex flex-col gap-y-8">
-              <div className="w-full p-4 h-[200px] bg-white rounded-2xl  flex flex-col gap-y-4 border shadow">
+              <div className="w-full p-4 h-[500px] bg-white rounded-2xl  flex flex-col gap-y-4 border shadow">
                 <FormField
                   control={form.control}
                   name="status"
@@ -203,49 +234,66 @@ export function CreateProductForm() {
                   )}
                 />
 
+                <FormField
+                  control={form.control}
+                  name="company"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select product status" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="IMB">IMB</SelectItem>
+                          <SelectItem value="IRC">IRC</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="range"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Range</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select product status" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="SERIE_700">SERIE_700</SelectItem>
+                          <SelectItem value="SERIE_700ECO">
+                            SERIE_700ECO
+                          </SelectItem>
+                          <SelectItem value="SERIE_900">SERIE_900</SelectItem>
+                          <SelectItem value="ELEMENTS_NEUTRES">
+                            ELEMENTS_NEUTRES
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 <Button disabled={loading} type="submit">
                   {loading && <Loader className="mr-2 w04 h-4 animate-spin" />}
                   Sauvegarder les modifications
                 </Button>
-              </div>
-
-              <div className="w-full min-h-[200px] h-fit flex flex-wrap gap-4 bg-white p-4  border shadow rounded-2xl">
-                <FormField
-                  control={form.control}
-                  name="images"
-                  render={({ field }) => (
-                    <FormItem className="flex w-full flex-col gap-1.5">
-                      <FormLabel>Images</FormLabel>
-                      {files?.length ? (
-                        <div className="flex items-center gap-2">
-                          {files.map((file, i) => (
-                            <Zoom key={i}>
-                              <Image
-                                src={file.preview}
-                                alt={file.name}
-                                className="h-20 w-20 shrink-0 rounded-md object-cover object-center"
-                                width={80}
-                                height={80}
-                              />
-                            </Zoom>
-                          ))}
-                        </div>
-                      ) : null}
-                      <FormControl>
-                        <FileDialog
-                          setValue={form.setValue}
-                          name="images"
-                          maxFiles={3}
-                          maxSize={1024 * 1024 * 4}
-                          files={files}
-                          setFiles={setFiles}
-                          isUploading={isUploading}
-                          disabled={isPending}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
               </div>
             </div>
           </div>

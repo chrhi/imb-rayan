@@ -1,11 +1,9 @@
-import FadeIn from "@/components/animations/fadein";
 import Banner from "@/components/Banner";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SucessClient from "./sucess-client";
-import CountBannerUp from "./count-up";
-import Values from "./values";
-import OurStory from "./our-story";
 import Map from "./map";
+import Products from "./products";
+import WhyUs from "./why-us";
 
 export default function Home() {
   return (
@@ -14,17 +12,11 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between mb-10 ">
         <MaxWidthWrapper>
           <SucessClient />
-
-          <FadeIn>
-            <CountBannerUp />
-          </FadeIn>
-          <FadeIn>
-            <Values />
-          </FadeIn>
-          <FadeIn>
-            <OurStory />
-          </FadeIn>
         </MaxWidthWrapper>
+
+        <Products />
+
+        <WhyUs />
       </main>
       <Map />
     </>

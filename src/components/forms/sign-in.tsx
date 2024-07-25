@@ -65,7 +65,7 @@ export function SignInForm() {
   }
 
   return (
-    <div className="w-[500px] h-[350px] shadow-xl border-2 rounded-2xl p-8 bg-white">
+    <div className="w-[400px] h-[350px] shadow-xl border-2 rounded-2xl p-8 bg-white">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

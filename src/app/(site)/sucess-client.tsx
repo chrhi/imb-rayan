@@ -76,9 +76,14 @@ const ReviewCard = ({
 
 const SucessClient: FC = ({}) => {
   return (
-    <section className="w-full h-fit md:h-[400px] flex flex-col gap-y-1 my-20">
+    <section className="w-full h-fit min-h-[450px] flex flex-col  gap-y-1 mt-20 mb-10">
       <h2 className="text-5xl font-bold text-center">Nos partenaires</h2>
-
+      <p className="text-xl text-center text-gray-500 my-4">
+        Nous pensons que les partenariats sont essentiels pour relever les défis
+        du développement. Nous travaillons en collaboration avec des
+        gouvernements, des entreprises, des fondations et des entrepreneurs .
+        Ensemble, nous pouvons construire de grandes choses.
+      </p>
       <div className="relative flex h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-background">
         <Marquee pauseOnHover className="[--duration:20s]">
           {firstRow.map((review) => (

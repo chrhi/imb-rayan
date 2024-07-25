@@ -1,4 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { DeleteActionDialog } from "@/components/modals/delete-product";
 import { DataTable } from "@/components/table";
 import { columns, Product } from "@/components/table/columns/products";
 import {
@@ -22,7 +23,7 @@ async function getData() {
   const products = data?.map((item) => {
     return {
       id: item.id,
-      price: Number(item.price),
+
       status: item.status,
       images: JSON.parse(item.images as string) as {
         id: string;
@@ -30,6 +31,8 @@ async function getData() {
         url: string;
       }[],
       name: item.name,
+      range: item.range,
+      company: item.company,
     };
   });
   // Fetch data from your API here.
@@ -43,6 +46,7 @@ const page: FC = async ({}) => {
 
   return (
     <MaxWidthWrapper>
+      <DeleteActionDialog />
       <div className="w-full h-fit  min-h-screen flex flex-col">
         <div className="w-full h-[100px] flex items-center justify-start">
           <Breadcrumb>

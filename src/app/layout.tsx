@@ -4,6 +4,7 @@ import Providers from "@/components/providers";
 import { Toaster } from "sonner";
 
 import "./globals.css";
+import "react-quill/dist/quill.snow.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] });
 

@@ -17,9 +17,9 @@ model Product {
   id                                 String   @id @default(uuid())
   createdAt                          DateTime @default(now())
   name                               String
-  description                        String?
+  description                        Json?
   status                             String   @default("PUBLSIHED")
   images                             Json?
-  price                              String
-
+  company                            String  @default("IMB")
+  range                              String 
 }

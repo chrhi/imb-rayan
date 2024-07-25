@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { isArrayOfFile } from "@/lib/utils";
+import { useOpenProductDeleteAction } from "@/lib/zustand";
 
 export type Product = {
   id: string;
@@ -24,7 +25,8 @@ export type Product = {
   }[];
   name: string;
   status: "DARFT" | "PUBLISHED";
-  price: number;
+  range: string;
+  company: string;
 };
 
 export const columns: ColumnDef<Product>[] = [
@@ -51,12 +53,9 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: "name",
     header: "Name",
   },
+
   {
-    accessorKey: "price",
-    header: "Prix",
-  },
-  {
-    accessorKey: "status",
+    accessorKey: "",
     header: "Status",
     cell: ({ row }) => {
       return (
@@ -69,9 +68,37 @@ export const columns: ColumnDef<Product>[] = [
     },
   },
   {
+    accessorKey: "range",
+    header: "Range",
+    cell: ({ row }) => {
+      return (
+        <div className="">
+          <Badge variant="default">{row.original.range}</Badge>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "company",
+    header: "Company",
+    cell: ({ row }) => {
+      return (
+        <div className="">
+          <Badge variant="destructive">{row.original.company}</Badge>
+        </div>
+      );
+    },
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { setId, setIsOpen } = useOpenProductDeleteAction();
+
+      const deleteAction = () => {
+        setId(row.original.id);
+        setIsOpen(true);
+      };
 
       return (
         <DropdownMenu>
@@ -87,7 +114,7 @@ export const columns: ColumnDef<Product>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem disabled>Edit product</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem disabled className="text-red-500">
+            <DropdownMenuItem className="text-red-500" onClick={deleteAction}>
               Delete Product
             </DropdownMenuItem>
           </DropdownMenuContent>

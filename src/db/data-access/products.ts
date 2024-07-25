@@ -7,22 +7,25 @@ export const insertProduct = async ({
   description,
   images,
   name,
-  price,
+  company,
+  range,
   status,
 }: {
   name: string;
-  description: string;
+  description: any;
   images: any[];
-  price: string;
+  range: string;
+  company: string;
   status: string;
 }) => {
   try {
     const item = await db.product.create({
       data: {
-        description,
+        description: JSON.stringify(description),
         images: JSON.stringify(images),
         name,
-        price,
+        range,
+        company,
         status,
       },
     });

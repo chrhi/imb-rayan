@@ -23,7 +23,7 @@ async function getData() {
   const products = data?.map((item) => {
     return {
       id: item.id,
-      price: Number(item.price),
+
       status: item.status,
       images: JSON.parse(item.images as string) as {
         id: string;
