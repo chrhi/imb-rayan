@@ -28,16 +28,16 @@ const ITEMS = [
 
 const WhyUs: FC = ({}) => {
   return (
-    <div className="w-full h-[500px] flex flex-col gap-y-8 border-t items-center justify-between pt-10">
+    <div className="w-full min-h-[500px] h-fit flex flex-col gap-y-8 border-t items-center justify-between pt-10">
       <h2 className="text-5xl font-bold">Pourquoi nous?</h2>
 
-      <div className="w-full h-[250px]  flex items-center justify-center gap-x-8">
+      <div className="w-full min-h-[250px] h-fit flex flex-col md:flex-row items-center justify-center gap-x-8">
         {ITEMS.map((item, index) => {
           return (
             <div
               key={index}
               className={`w-[250px] h-full   rounded-2xl items-center justify-center   flex flex-col gap-y-4 ${
-                item.up ? "mb-[10rem]" : ""
+                item.up ? "md:mb-[10rem]" : ""
               }`}
             >
               <Image 

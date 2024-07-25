@@ -6,7 +6,9 @@ const Map: FC = ({}) => {
   return (
     <>
       <div className="w-full h-[150px] flex items-center justify-center ">
-        <h2 className="text-5xl font-bold">Où peux-tu nous trouver ?</h2>
+        <h2 className="text-5xl font-bold text-center">
+          Où peux-tu nous trouver ?
+        </h2>
       </div>
       <div className="w-full relative h-fit">
         <iframe
