@@ -5,12 +5,12 @@ interface WhyUsProps {}
 
 const ITEMS = [
   {
-    text: "nous avons du matériel de haute qualité  Et services",
+    text: "Nous avons du matériel de haute qualité  Et services",
     icon: "/why-us/high-quality 1.png",
     up: true,
   },
   {
-    text: "nous avons service apres vente",
+    text: "Nous avons service apres vente",
     icon: "/why-us/call 1.png",
     up: false,
   },
@@ -20,7 +20,7 @@ const ITEMS = [
     up: false,
   },
   {
-    text: "nous beneficions de prix abordables",
+    text: "Nous beneficions de prix abordables",
     icon: "/why-us/best-price 1.png",
     up: true,
   },
