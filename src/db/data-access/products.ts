@@ -47,3 +47,17 @@ export const getAllProducts = async () => {
     catchError(err);
   }
 };
+
+export const deleteProduct = async ({ id }: { id: string }) => {
+  try {
+    const deletedProduct = await db.product.delete({
+      where: {
+        id,
+      },
+    });
+
+    return deletedProduct;
+  } catch (err) {
+    console.error(err);
+  }
+};

@@ -1,6 +1,6 @@
 "use server";
 
-import { insertProduct } from "@/db/data-access/products";
+import { deleteProduct, insertProduct } from "@/db/data-access/products";
 import { revalidatePath } from "next/cache";
 
 export const createProduct = async ({
@@ -20,6 +20,15 @@ export const createProduct = async ({
 }) => {
   try {
     await insertProduct({ description, images, name, status, company, range });
+    revalidatePath("/dashboard/products");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deletedProductAction = async ({ id }: { id: string }) => {
+  try {
+    await deleteProduct({ id });
     revalidatePath("/dashboard/products");
   } catch (err) {
     console.error(err);

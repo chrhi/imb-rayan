@@ -114,7 +114,10 @@ export const columns: ColumnDef<Product>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem disabled>Edit product</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-500" onClick={deleteAction}>
+            <DropdownMenuItem
+              className="text-red-500 cursor-pointer"
+              onClick={deleteAction}
+            >
               Delete Product
             </DropdownMenuItem>
           </DropdownMenuContent>

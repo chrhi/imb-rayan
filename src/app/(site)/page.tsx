@@ -4,6 +4,7 @@ import SucessClient from "./sucess-client";
 import Map from "./map";
 import Products from "./products";
 import WhyUs from "./why-us";
+import NewsLetter from "./news-letter";
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
         <Products />
 
         <WhyUs />
+
+        <NewsLetter />
       </main>
       <Map />
     </>

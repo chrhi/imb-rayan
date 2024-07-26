@@ -42,8 +42,6 @@ async function getData() {
 const page: FC = async ({}) => {
   const data = await getData();
 
-  console.log(data);
-
   return (
     <MaxWidthWrapper>
       <DeleteActionDialog />
