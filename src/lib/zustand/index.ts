@@ -1,3 +1,4 @@
+import { TProduct } from "@/types";
 import { create } from "zustand";
 
 interface StateShape {
@@ -12,4 +13,15 @@ export const useOpenProductDeleteAction = create<StateShape>()((set) => ({
   open: false,
   setId: (val: string) => set({ id: val }),
   setIsOpen: (open: boolean) => set({ open: open }),
+}));
+
+interface BasketShape {
+  addProduct: (product: TProduct) => void;
+  products: TProduct[];
+}
+
+export const BasketStore = create<BasketShape>()((set, get) => ({
+  products: [],
+  addProduct: (product: TProduct) =>
+    set({ products: [...get().products, product] }),
 }));

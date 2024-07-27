@@ -16,6 +16,7 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Cable, Flame, Info, Layers3, ShoppingBasket } from "lucide-react";
 import dynamic from "next/dynamic";
+import { BasketStore } from "@/lib/zustand";
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -51,6 +52,8 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
   const [selectedImage, setSelectedImage] = React.useState<string>(
     product.images[0]?.url || ""
   );
+
+  const addProduct = BasketStore((item) => item.addProduct);
 
   console.log(product?.description);
 
@@ -104,7 +107,13 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
         </div>
 
         <div className="w-full min-h-[300px]  h-[600px]  my-20  flex flex-col rounded-2xl gap-y-6">
-          <Button className="bg-primary h-[50px] font-bold gap-x-4" size={"lg"}>
+          <Button
+            onClick={() => {
+              addProduct(product);
+            }}
+            className="bg-primary h-[50px] font-bold gap-x-4"
+            size={"lg"}
+          >
             <ShoppingBasket className="w-6 h-6 text-white" />
             Add aux panier
           </Button>
