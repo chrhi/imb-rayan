@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Itim } from "next/font/google";
 import Providers from "@/components/providers";
 import { Toaster } from "sonner";
 
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const itim = Itim({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "IMB",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={itim.className}>
         <Providers>
           <div className="w-full h-fit  relative">{children}</div>
           <Toaster closeButton />
