@@ -1,8 +1,9 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import ProductCard from "@/components/product-card";
 import { getAllProducts } from "@/db/data-access/products";
-import Link from "next/link";
 import type { FC } from "react";
+
+interface PageProps {}
 
 async function getData() {
   const data = await getAllProducts();
@@ -23,40 +24,34 @@ async function getData() {
     };
   });
   // Fetch data from your API here.
-  return products?.slice(0, 3);
+  return products;
 }
 
-const Products: FC = async ({}) => {
+const Page: FC = async ({}) => {
   const products = await getData();
   return (
-    <div className="w-full h-fit min-h-[500px] bg-[#F1F3FF] py-4">
-      <MaxWidthWrapper className="h-full space-y-5">
-        <div className="w-full h-[50px] flex items-center justify-between">
-          <h2 className="text-5xl font-bold text-start">Voir nos produits</h2>
+    <MaxWidthWrapper>
+      <div className="w-full h-screen flex flex-col pt-10 gap-y-8">
+        <h1 className="text-4xl font-bold text-start">
+          Tous les produits disponibles
+        </h1>
 
-          <Link href="imb/products">
-            <span className="text-blue-500 hover:underline hover:cursor-pointer transition-all">
-              voir tout
-            </span>
-          </Link>
-        </div>
-
-        <div className="w-full h-[350px] flex items-center justify-center gap-x-4">
+        <div className="w-full h-[300px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-5">
           {products?.map((item) => {
             return (
               <ProductCard
-                image={item.images[0].url}
                 key={item.id}
+                id={item.id}
+                image={item.images[0].url}
                 range={item.range}
                 title={item.name}
-                id={item.id}
               />
             );
           })}
         </div>
-      </MaxWidthWrapper>
-    </div>
+      </div>
+    </MaxWidthWrapper>
   );
 };
 
-export default Products;
+export default Page;

@@ -12,3 +12,17 @@ export type TRange = [
 ];
 
 export type TCompany = ["IMB", "IRC"];
+
+export type TProduct = {
+  id: string;
+  status: string;
+  images: {
+    id: string;
+    name: string;
+    url: string;
+  }[];
+  name: string;
+  range: string;
+  description: any;
+  company: string;
+};

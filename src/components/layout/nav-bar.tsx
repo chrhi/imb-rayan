@@ -26,7 +26,7 @@ const NavBar: FC = ({}) => {
     return false;
   };
   return (
-    <div className="w-full h-[80px]  bg-white fixed top-0 z-[50] border-b shadow-md ">
+    <div className="w-full h-[80px]  bg-white fixed top-0 z-[50] border-b  ">
       <MaxWidthWrapper className="h-[80px]  flex items-center justify-between">
         <div
           onClick={() => router.push("/")}
@@ -44,9 +44,9 @@ const NavBar: FC = ({}) => {
           <Button
             variant={"ghost"}
             className={`text-lg  ${
-              isCurrectPath("/products") ? "font-bold " : ""
+              isCurrectPath("imb/products") ? "font-bold " : ""
             }`}
-            onClick={() => router.push("/products")}
+            onClick={() => router.push("imb/products")}
           >
             {" "}
             Produits
@@ -54,7 +54,7 @@ const NavBar: FC = ({}) => {
           <Button
             variant={"ghost"}
             className={`text-lg  ${
-              isCurrectPath("/services") ? "font-bold " : ""
+              isCurrectPath("imb/services") ? "font-bold " : ""
             }`}
             onClick={() => router.push("/services")}
           >

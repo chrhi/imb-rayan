@@ -2,6 +2,7 @@
 
 import { catchError } from "@/lib/utils";
 import { db } from "..";
+import { Prisma } from "@prisma/client";
 
 export const insertProduct = async ({
   description,
@@ -60,4 +61,14 @@ export const deleteProduct = async ({ id }: { id: string }) => {
   } catch (err) {
     console.error(err);
   }
+};
+
+export const getProductById = async ({ id }: { id: string }) => {
+  const product = await db.product.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  return product;
 };

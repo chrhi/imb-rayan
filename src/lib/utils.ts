@@ -1,3 +1,4 @@
+import { TRange } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { jwtVerify } from "jose";
 import { toast } from "sonner";
@@ -89,4 +90,26 @@ export function isArrayOfFile(files: unknown): files is File[] {
   const isArray = Array.isArray(files);
   if (!isArray) return false;
   return files.every((file) => file instanceof File);
+}
+
+export function getValueFromUrl({ value }: { value: string }) {
+  const subdomain_value =
+    process.env.NODE_ENV === "development" ? value : decodeURIComponent(value);
+
+  return subdomain_value;
+}
+
+export function toReadableSentence(range: TRange[number]): string {
+  // Split the string by underscores
+  const words = range.split("_");
+
+  // Capitalize the first letter of each word and join them with a space
+  const readableSentence = words
+    .map((word) => {
+      const lowerCasedWord = word.toLowerCase();
+      return lowerCasedWord.charAt(0).toUpperCase() + lowerCasedWord.slice(1);
+    })
+    .join(" ");
+
+  return readableSentence;
 }

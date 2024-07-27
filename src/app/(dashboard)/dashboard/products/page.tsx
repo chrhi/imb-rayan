@@ -35,7 +35,7 @@ async function getData() {
       company: item.company,
     };
   });
-  // Fetch data from your API here.
+
   return products;
 }
 

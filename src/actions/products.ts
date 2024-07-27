@@ -1,6 +1,11 @@
 "use server";
 
-import { deleteProduct, insertProduct } from "@/db/data-access/products";
+import {
+  deleteProduct,
+  getProductById,
+  insertProduct,
+} from "@/db/data-access/products";
+import { TProduct } from "@/types";
 import { revalidatePath } from "next/cache";
 
 export const createProduct = async ({
@@ -33,4 +38,29 @@ export const deletedProductAction = async ({ id }: { id: string }) => {
   } catch (err) {
     console.error(err);
   }
+};
+
+export const getProductByIdAction = async ({
+  id,
+}: {
+  id: string;
+}): Promise<TProduct | null> => {
+  const item = await getProductById({ id });
+
+  if (!item) {
+    return null;
+  }
+  return {
+    id: item.id,
+    status: item.status,
+    images: JSON.parse(item.images as string) as {
+      id: string;
+      name: string;
+      url: string;
+    }[],
+    name: item.name,
+    range: item.range,
+    company: item.company,
+    description: JSON.parse(item.description as string),
+  };
 };

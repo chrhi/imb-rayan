@@ -67,3 +67,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* customQuillStyles.css */
+.ql-container {
+  border: none !important;
+}
+
+.ql-editor {
+  border: none !important;
+  padding: 0 !important; /* Adjust as needed to remove padding */
+}
