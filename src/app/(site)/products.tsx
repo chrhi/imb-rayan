@@ -10,7 +10,6 @@ async function getData() {
   const products = data?.map((item) => {
     return {
       id: item.id,
-
       status: item.status,
       images: JSON.parse(item.images as string) as {
         id: string;
@@ -28,6 +27,8 @@ async function getData() {
 
 const Products: FC = async ({}) => {
   const products = await getData();
+
+  console.log(products);
   return (
     <div className="w-full h-fit min-h-[500px] bg-[#F1F3FF] py-4">
       <MaxWidthWrapper className="h-full space-y-5">

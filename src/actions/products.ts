@@ -26,6 +26,8 @@ export const createProduct = async ({
   try {
     await insertProduct({ description, images, name, status, company, range });
     revalidatePath("/dashboard/products");
+    revalidatePath("/imb/products");
+    revalidatePath("/");
   } catch (err) {
     console.error(err);
   }
@@ -35,6 +37,8 @@ export const deletedProductAction = async ({ id }: { id: string }) => {
   try {
     await deleteProduct({ id });
     revalidatePath("/dashboard/products");
+    revalidatePath("/imb/products");
+    revalidatePath("/");
   } catch (err) {
     console.error(err);
   }
