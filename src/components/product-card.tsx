@@ -13,8 +13,8 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ image, range, title, id }) => {
   return (
-    <div className=" h-[350px] w-full sm:w-[300px]  flex flex-col gap-y-4">
-      <div className="relative w-full h-[250px]">
+    <div className=" h-[350px] w-full sm:w-[250px] flex flex-col gap-y-4">
+      <div className="relative w-full h-[250px] border border-[#5B5B5B]  rounded-lg">
         <Image
           src={image}
           alt="product image"
@@ -23,15 +23,10 @@ const ProductCard: FC<ProductCardProps> = ({ image, range, title, id }) => {
         />
       </div>
       <Link href={`/imb/products/${id}`}>
-        <span className="text-xl font-bold text-start hover:text-blue-500 hover:underline transition-all">
+        <span className="text-xl text-[#5B5B5B]  font-bold text-start hover:text-blue-500 hover:underline transition-all">
           {title}
         </span>
       </Link>
-
-      <Badge className="w-fit bg-secondary text-black">
-        {/* @ts-ignore */}
-        {toReadableSentence(range)}
-      </Badge>
     </div>
   );
 };

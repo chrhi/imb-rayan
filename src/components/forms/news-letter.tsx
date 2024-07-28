@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { rootAdminSignInAction } from "@/actions/auth";
-import { Loader } from "lucide-react";
+import { Loader, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -62,8 +62,8 @@ export function NewsLetterForm() {
               <FormItem className="w-full">
                 <FormControl>
                   <Input
-                    className="w-full"
-                    placeholder="email@gmail.com..."
+                    className="w-full placeholder:text-xl placeholder:text-[#5B5B5B] h-[50px]"
+                    placeholder="Entrer votre Email"
                     {...field}
                   />
                 </FormControl>
@@ -73,9 +73,14 @@ export function NewsLetterForm() {
             )}
           />
 
-          <Button disabled={isLoading} type="submit" className=" bg-primary">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            className=" bg-primary h-[50px] text-xl font-bold"
+          >
             {isLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
             Envoyer
+            <SendHorizontal className="w-4 h-4 text-white ml-2 " />
           </Button>
         </form>
       </Form>

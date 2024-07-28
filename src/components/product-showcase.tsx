@@ -14,7 +14,14 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Cable, Flame, Info, Layers3, ShoppingBasket } from "lucide-react";
+import {
+  Cable,
+  Flame,
+  Info,
+  Layers3,
+  Scale3D,
+  ShoppingBasket,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import { BasketStore } from "@/lib/zustand";
 // Dynamically import React Quill to avoid SSR issues
@@ -40,6 +47,10 @@ const ItemDetails = [
   {
     icon: <Cable className="w-6 h-6 text-white" />,
     title: "Puissance Gaz ",
+  },
+  {
+    icon: <Scale3D className="w-6 h-6 text-white" />,
+    title: "(chambre) LxPxH (mm)",
   },
 ];
 
@@ -96,43 +107,45 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
             </Carousel>
           </div>
 
-          <div className="w-[80%]  h-[600px]    border rounded-2xl relative">
-            <Image
-              alt="image"
-              src={selectedImage}
-              fill
-              className="rounded-2xl object-cover"
-            />
+          <div className="w-[80%]  h-[600px]  flex flex-col gap-y-4   rounded-2xl relative">
+            <div className="w-full  h-[530px]    border border-black rounded-2xl relative">
+              <Image
+                alt="image"
+                src={selectedImage}
+                fill
+                className="rounded-2xl object-cover"
+              />
+            </div>
+
+            <Button
+              onClick={() => {
+                addProduct(product);
+              }}
+              className="bg-primary h-[50px] text-xl font-bold gap-x-4"
+              size={"lg"}
+            >
+              <ShoppingBasket className="w-6 h-6 text-white" />
+              Add aux panier
+            </Button>
           </div>
         </div>
 
         <div className="w-full min-h-[300px]  h-[600px]  my-20  flex flex-col rounded-2xl gap-y-6">
-          <Button
-            onClick={() => {
-              addProduct(product);
-            }}
-            className="bg-primary h-[50px] font-bold gap-x-4"
-            size={"lg"}
-          >
-            <ShoppingBasket className="w-6 h-6 text-white" />
-            Add aux panier
-          </Button>
-
-          <Separator />
-          <h2 className="text-2xl font-bold">Caractéristiques</h2>
-          <div className="w-full h-fit min-h-[100px]  flex flex-col border-2 border-black gap-y-1 bg-black ">
+          <div className="w-full h-fit min-h-[100px]  flex flex-col  gap-y-2  ">
             {ItemDetails.map((item) => {
               return (
                 <div
                   key={item.title}
-                  className="w-full h-[70px] flex items-center justify-start  border-b border-black"
+                  className="w-full h-[80px] flex items-center justify-start  rounded-xl bg-primary"
                 >
-                  <div className="w-[40%] h-full bg-black  flex items-center justify-start gap-x-4 px-2">
+                  <div className="w-[40%] h-full bg-black  flex items-center justify-start gap-x-4 px-2 rounded-xl ">
                     {item.icon}
-                    <span className="text-white font-bold">{item.title}</span>
+                    <span className="text-white font-bold text-xl">
+                      {item.title}
+                    </span>
                   </div>
 
-                  <div className="bg-secondary w-[60%] h-[70px]  "></div>
+                  <div className=" w-[60%] h-[80px]  rounded-xl  "></div>
                 </div>
               );
             })}

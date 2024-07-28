@@ -35,12 +35,12 @@ export default function Banner() {
     <div className="w-full overflow-hidden relative h-fit">
       <Carousel setApi={setApi} className="w-full ">
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+          {Array.from({ length: 2 }).map((_, index) => (
             <CarouselItem key={index}>
               <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 ">
                 <Image
                   fill
-                  src="/12332.jpg"
+                  src={"/12332.jpg"}
                   alt="this is store banner"
                   className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
                 />

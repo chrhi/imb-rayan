@@ -100,10 +100,8 @@ export function getValueFromUrl({ value }: { value: string }) {
 }
 
 export function toReadableSentence(range: TRange[number]): string {
-  // Split the string by underscores
   const words = range.split("_");
 
-  // Capitalize the first letter of each word and join them with a space
   const readableSentence = words
     .map((word) => {
       const lowerCasedWord = word.toLowerCase();

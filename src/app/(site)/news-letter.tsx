@@ -11,13 +11,13 @@ const NewsLetter: FC = ({}) => {
         <div className="w-full h-full  grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="w-full h-full flex items-center justify-center ">
             <h2 className="text-5xl text-start font-bold">
-              Pour vous renseigner et en savoir plus
+              Pour vous <br /> renseigner et en <br /> savoir plus
             </h2>
           </div>
 
-          <div className="w-full h-full flex flex-col gap-y-4 items-center justify-center ">
+          <div className="w-full h-full flex flex-col gap-y-4 items-center justify-center  max-w-2xl">
             <NewsLetterForm />
-            <span>
+            <span className="text-[#5B5B5B] text-xl">
               {" "}
               vous recevrez un message sur votre e-mail contenant les produits
               et services de haute qualite que nous proposons.
