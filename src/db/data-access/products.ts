@@ -34,6 +34,41 @@ export const insertProduct = async ({
     console.error(err);
   }
 };
+export const updateProduct = async ({
+  description,
+  images,
+  name,
+  company,
+  range,
+  status,
+  id,
+}: {
+  name: string;
+  description: any;
+  images: any[];
+  range: string;
+  company: string;
+  status: string;
+  id: string;
+}) => {
+  try {
+    const item = await db.product.update({
+      data: {
+        description: JSON.stringify(description),
+        images: JSON.stringify(images),
+        name,
+        range,
+        company,
+        status,
+      },
+      where: {
+        id,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const getAllProducts = async () => {
   try {

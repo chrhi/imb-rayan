@@ -22,16 +22,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useUploadThing } from "@/lib/uploadthing";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileDialog } from "../file-dialog";
-import { FileWithPreview } from "@/types";
+import { FileWithPreview, TProduct } from "@/types";
 import { useRouter } from "next/navigation";
 import { catchError, isArrayOfFile } from "@/lib/utils";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { Zoom } from "../zoom-image";
 import Image from "next/image";
-import { createProduct } from "@/actions/products";
+import { createProduct, updateProductAction } from "@/actions/products";
 import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -61,7 +61,7 @@ export const productSchema = z.object({
 
 type Inputs = z.infer<typeof productSchema>;
 
-export function CreateProductForm() {
+export function UpdateProductForm({ product }: { product: TProduct }) {
   const [files, setFiles] = useState<FileWithPreview[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -69,13 +69,28 @@ export function CreateProductForm() {
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
 
+  useEffect(() => {
+    if (product.images && product.images.length > 0) {
+      setFiles(
+        product.images.map((image: { name: string; url: any }) => {
+          const file = new File([], image.name, {
+            type: "image",
+          });
+          const fileWithPreview = Object.assign(file, {
+            preview: image.url,
+          });
+
+          return fileWithPreview;
+        })
+      );
+    }
+  }, [product]);
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      name: "",
-      status: "",
-      images: "",
-      description: {},
+      name: product.name,
+      status: product.status,
+      description: product.description,
     },
   });
 
@@ -95,10 +110,11 @@ export function CreateProductForm() {
                 return formattedImages ?? null;
               })
               .then(async (images) => {
-                await createProduct({
+                await updateProductAction({
                   ...data,
                   description: data.description ?? "",
                   images: images ?? [],
+                  id: product.id,
                 });
 
                 router.push("/dashboard/products");
@@ -111,10 +127,11 @@ export function CreateProductForm() {
             }
           );
         } else {
-          await createProduct({
+          await updateProductAction({
             ...data,
             description: data.description ?? "",
             images: [],
+            id: product.id,
           });
 
           router.push("/dashboard/products");
@@ -216,11 +233,11 @@ export function CreateProductForm() {
                       <FormLabel>Status</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={product.status}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select product status" />
+                            <SelectValue defaultValue={product.status} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -241,11 +258,11 @@ export function CreateProductForm() {
                       <FormLabel>Company</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={product.company}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select product status" />
+                            <SelectValue defaultValue={product.company} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -266,11 +283,11 @@ export function CreateProductForm() {
                       <FormLabel>Range</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={product.range}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select product status" />
+                            <SelectValue defaultValue={product.range} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>

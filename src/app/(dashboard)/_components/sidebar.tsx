@@ -10,8 +10,6 @@ import { Home, Package, Package2, Settings, Users2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface SidebarProps {}
-
 const Sidebar: FC = ({}) => {
   const path = usePathname();
 

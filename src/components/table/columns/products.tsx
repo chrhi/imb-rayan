@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { isArrayOfFile } from "@/lib/utils";
 import { useOpenProductDeleteAction } from "@/lib/zustand";
+import Link from "next/link";
 
 export type Product = {
   id: string;
@@ -112,7 +113,12 @@ export const columns: ColumnDef<Product>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem disabled>Edit product</DropdownMenuItem>
+            <Link href={`/dashboard/products/${row.original.id}`}>
+              <DropdownMenuItem className=" cursor-pointer">
+                Edit product
+              </DropdownMenuItem>
+            </Link>
+
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="text-red-500 cursor-pointer"

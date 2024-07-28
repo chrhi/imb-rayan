@@ -17,15 +17,20 @@ const page: FC = async ({}) => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+                <BreadcrumbLink href="/dashboard">
+                  Tableau de bord
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/components">Products</BreadcrumbLink>
+                <BreadcrumbLink href="/dashboard/products">
+                  {" "}
+                  Des produits
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/components">
+                <BreadcrumbLink href="/dashboard/products/create">
                   Create product
                 </BreadcrumbLink>
               </BreadcrumbItem>
