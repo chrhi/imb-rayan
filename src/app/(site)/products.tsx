@@ -31,7 +31,7 @@ const Products: FC = async ({}) => {
   console.log(products);
   return (
     <div className="w-full h-fit min-h-[500px] bg-[#F1F3FF] py-4">
-      <MaxWidthWrapper className="h-full space-y-5">
+      <MaxWidthWrapper className="h-full  flex flex-col gap-y-8">
         <div className="w-full h-[50px] flex items-center justify-between">
           <h2 className="text-5xl font-bold text-start">Voir nos produits</h2>
 
@@ -42,7 +42,7 @@ const Products: FC = async ({}) => {
           </Link>
         </div>
 
-        <div className="w-full h-[350px] flex items-center justify-center gap-x-4">
+        <div className="w-full h-[350px] mt-4  flex items-center justify-center gap-x-8">
           {products?.map((item) => {
             return (
               <ProductCard
