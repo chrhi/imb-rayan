@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Banner />
-      <main className="flex min-h-screen flex-col items-center justify-between mb-10 ">
+      <main className="flex min-h-screen flex-col items-center justify-between ">
         <MaxWidthWrapper>
           <SucessClient />
         </MaxWidthWrapper>

@@ -6,7 +6,7 @@ interface NewsLetterProps {}
 
 const NewsLetter: FC = ({}) => {
   return (
-    <div className="w-full h-[400px] bg-[#F1F3FF] ">
+    <div className="w-full h-[400px] bg-[#F1F3FF] border-b border-black">
       <MaxWidthWrapper className="h-full  max-w-screen-xl">
         <div className="w-full h-full  grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="w-full h-full flex items-center justify-center ">

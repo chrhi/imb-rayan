@@ -36,7 +36,7 @@ const Page: FC = async ({}) => {
           Tous les produits disponibles
         </h1>
 
-        <div className="w-full h-[300px]  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  xl:grid-cols-4">
+        <div className=" w-full min-h-[300px]  h-fit grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
           {products?.map((item) => {
             return (
               <ProductCard
