@@ -2,7 +2,7 @@ import { OrderEmail } from "@/emails/order-email";
 import { TProduct } from "@/types";
 import { Resend } from "resend";
 
-const resend = new Resend("re_123456789");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 type InquiryEmailParams = {
   products: TProduct[];
