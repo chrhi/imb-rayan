@@ -11,7 +11,6 @@ async function getData() {
   const products = data?.map((item) => {
     return {
       id: item.id,
-
       status: item.status,
       images: JSON.parse(item.images as string) as {
         id: string;
@@ -23,7 +22,6 @@ async function getData() {
       company: item.company,
     };
   });
-  // Fetch data from your API here.
   return products;
 }
 

@@ -10,7 +10,7 @@ import type { FC } from "react";
 interface ListItemsProps {}
 
 const ListItems: FC = ({}) => {
-  const products = BasketStore((item) => item.products);
+  const products = BasketStore((item) => item?.products);
   return (
     <div className="w-full h-full flex flex-col gap-y-4 p-8 border-r">
       <div className="w-full h-[50px] flex items-center justify-start pt-4">

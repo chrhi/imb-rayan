@@ -15,8 +15,8 @@ type InquiryEmailParams = {
 
 export const sendInquiryEmail = async (params: InquiryEmailParams) => {
   await resend.emails.send({
-    from: params.email,
-    to: "mahdi.chahri55@gmail.com",
+    from: "imb@cravvelo.com",
+    to: params.email,
     subject: "inquiry email",
     react: <OrderEmail {...params} />,
   });
@@ -33,8 +33,8 @@ type OrderEmailParams = {
 
 export const sendOrderEmail = async (params: OrderEmailParams) => {
   await resend.emails.send({
-    from: params.email,
-    to: "mahdi.chahri55@gmail.com",
+    from: "imb@cravvelo.com",
+    to: params.email,
     subject: "order email",
     react: <OrderEmail {...params} />,
   });

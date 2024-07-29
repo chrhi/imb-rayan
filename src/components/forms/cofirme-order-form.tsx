@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendOrderEmailAction } from "@/actions/email";
 import { BasketStore } from "@/lib/zustand";
+import { Loader } from "lucide-react";
+import React from "react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -28,6 +30,8 @@ const formSchema = z.object({
 
 export function CofirmeOrderForm() {
   const products = BasketStore((item) => item.products);
+
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,6 +45,7 @@ export function CofirmeOrderForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     try {
       await sendOrderEmailAction({
         email: values.email,
@@ -50,7 +55,9 @@ export function CofirmeOrderForm() {
         phone: values.phoneNumber,
         products: products,
       });
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.error(err);
     }
   }
@@ -139,10 +146,11 @@ export function CofirmeOrderForm() {
         />
 
         <Button
-          disabled={products.length !== 0}
+          disabled={products.length === 0 || loading}
           type="submit"
           className="w-full h-[50px] "
         >
+          {loading && <Loader className="mr-2 w-4 h-4 animate-spin" />}
           Envoyer ma commande
         </Button>
       </form>
