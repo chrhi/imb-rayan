@@ -14,11 +14,8 @@ export default function Home() {
         <MaxWidthWrapper>
           <SucessClient />
         </MaxWidthWrapper>
-
         <Products />
-
         <WhyUs />
-
         <NewsLetter />
       </main>
       <Map />
