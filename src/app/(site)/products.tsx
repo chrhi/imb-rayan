@@ -35,7 +35,7 @@ const Products: FC = async ({}) => {
         <div className="w-full h-[50px] flex items-center justify-between">
           <h2 className="text-5xl font-bold text-start">Voir nos produits</h2>
 
-          <Link href="imb/products">
+          <Link href="/products">
             <span className="text-blue-500 hover:underline hover:cursor-pointer transition-all">
               voir tout
             </span>

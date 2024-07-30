@@ -99,7 +99,7 @@ const Page = async ({ params }: PageProps) => {
               Produits <MoveRight className="w-8 h-8 ml-2 " />
             </h2>
 
-            <Link href="imb/products">
+            <Link href="/products">
               <span className="text-blue-500 hover:underline hover:cursor-pointer transition-all">
                 voir tout
               </span>
