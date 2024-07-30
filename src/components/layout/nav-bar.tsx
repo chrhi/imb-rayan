@@ -59,7 +59,7 @@ const NavBar: FC = ({}) => {
           <Button
             variant={"ghost"}
             className={`text-lg  ${
-              isCurrectPath("imb/services") ? "font-bold " : ""
+              isCurrectPath("/services") ? "font-bold " : ""
             }`}
             onClick={() => router.push("/services")}
           >
@@ -68,8 +68,10 @@ const NavBar: FC = ({}) => {
           </Button>
           <Button
             variant={"ghost"}
-            className={`text-lg  ${isCurrectPath("/blog") ? "font-bold " : ""}`}
-            onClick={() => router.push("/blog")}
+            className={`text-lg  ${
+              isCurrectPath("/about-us") ? "font-bold " : ""
+            }`}
+            onClick={() => router.push("/about-us")}
           >
             {" "}
             A Propos

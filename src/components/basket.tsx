@@ -47,10 +47,11 @@ const Basket: FC = ({}) => {
       <SheetContent>
         <SheetHeader className="w-full h-fit flex items-center justify-between">
           <SheetTitle>Panier</SheetTitle>
-
-          <Button size="icon" variant={"ghost"} onClick={clearItems}>
-            <Trash2 className="w-4 h-4 text-black" />
-          </Button>
+          {products.length > 0 && (
+            <Button size="icon" variant={"ghost"} onClick={clearItems}>
+              <Trash2 className="w-4 h-4 text-black" />
+            </Button>
+          )}
         </SheetHeader>
         {products?.length === 0 ? (
           <div className="w-full h-full flex flex-col gap-y-4 items-center justify-center">
