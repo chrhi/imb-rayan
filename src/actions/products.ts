@@ -114,5 +114,6 @@ export const getProductByIdAction = async ({
     range: item.range,
     company: item.company,
     description: JSON.parse(item.description as string),
+    optionGaz: item.option_gaz,
   };
 };

@@ -8,12 +8,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Product } from "@prisma/client";
 import { TProduct } from "@/types";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
 import {
   Cable,
   Flame,
