@@ -46,6 +46,8 @@ export function SignInForm() {
         rootAdminSignInAction({
           email: values.email,
           password: values.password,
+        }).then(() => {
+          router.push("/dashboard");
         }),
         {
           loading: "nous validons vos informations d&apos;identification...",
@@ -55,8 +57,6 @@ export function SignInForm() {
           error: "une erreur",
         }
       );
-
-      router.push("/dashboard");
     } catch (err) {
       // displaying an error to the user
 
