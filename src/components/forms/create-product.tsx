@@ -45,10 +45,10 @@ export const productSchema = z.object({
     message: "Must be at least 1 character",
   }),
   description: z.any(),
-  option_gaz: z.any(),
   status: z.string(),
   range: z.string(),
   company: z.string(),
+  optionGaz: z.boolean(),
   images: z
     .unknown()
     .refine((val) => {
@@ -77,6 +77,7 @@ export function CreateProductForm() {
       name: "",
       status: "",
       images: "",
+      optionGaz: false,
       description: {},
     },
   });
@@ -224,72 +225,6 @@ export function CreateProductForm() {
                   </FormItem>
                 )}
               />
-
-              <div className="w-full h-[50px] flex items-center justify-start">
-                <span className="text-lg font-bold">Détails techniques</span>
-              </div>
-
-              <div className="w-full h-fit grid grid-cols-3 gap-4">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Reference</FormLabel>
-                      <FormControl>
-                        <Textarea className="resize-none" {...field} />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Matiere</FormLabel>
-                      <FormControl>
-                        <Textarea className="resize-none" {...field} />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Gas</FormLabel>
-                      <FormControl>
-                        <Textarea className="resize-none" {...field} />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Puissance</FormLabel>
-                      <FormControl>
-                        <Textarea className="resize-none" {...field} />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
             </div>
 
             <div className="w-full h-full   flex flex-col gap-y-8">
@@ -381,7 +316,7 @@ export function CreateProductForm() {
 
                 <FormField
                   control={form.control}
-                  name="option_gaz"
+                  name="optionGaz"
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                       <div className="space-y-0.5">

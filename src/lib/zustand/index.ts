@@ -16,6 +16,13 @@ export const useOpenProductDeleteAction = create<StateShape>()((set) => ({
   setIsOpen: (open: boolean) => set({ open: open }),
 }));
 
+export const useOpenGazSelectionAction = create<StateShape>()((set) => ({
+  id: null,
+  open: false,
+  setId: (val: string) => set({ id: val }),
+  setIsOpen: (open: boolean) => set({ open: open }),
+}));
+
 interface BasketShape {
   addProduct: (product: TProduct) => void;
   deleteItem: (product: TProduct) => void;

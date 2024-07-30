@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next13-progressbar";
 import Basket from "../basket";
 
-interface NavBarProps {}
+
 
 const NavBar: FC = ({}) => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const NavBar: FC = ({}) => {
     return false;
   };
   return (
-    <div className="w-full h-[80px]  shadow bg-white fixed top-0 z-[50] border-b  ">
+    <div className="w-full h-[80px]  shadow  fixed top-0 z-[50] border-b bg-white  ">
       <MaxWidthWrapper className="h-[80px]  flex items-center justify-between">
         <div
           onClick={() => router.push("/")}
@@ -88,7 +88,9 @@ const NavBar: FC = ({}) => {
           </Button>
           <Basket />
         </div>
-        <MobileNav />
+        <div className="w-[30%] h-full lg:hidden flex items-center justify-end pr-4">
+          <MobileNav />
+        </div>
       </MaxWidthWrapper>
     </div>
   );

@@ -16,6 +16,7 @@ export const createProduct = async ({
   company,
   range,
   status,
+  optionGaz,
 }: {
   name: string;
   description: any;
@@ -23,9 +24,18 @@ export const createProduct = async ({
   range: string;
   company: string;
   status: string;
+  optionGaz: boolean;
 }) => {
   try {
-    await insertProduct({ description, images, name, status, company, range });
+    await insertProduct({
+      description,
+      images,
+      name,
+      status,
+      company,
+      range,
+      option_gaz: optionGaz,
+    });
     revalidatePath("/dashboard/products");
     revalidatePath("/imb/products");
     revalidatePath("/");
@@ -41,6 +51,7 @@ export const updateProductAction = async ({
   range,
   status,
   id,
+  optionGaz,
 }: {
   name: string;
   description: any;
@@ -49,6 +60,7 @@ export const updateProductAction = async ({
   company: string;
   status: string;
   id: string;
+  optionGaz: boolean;
 }) => {
   try {
     await updateProduct({
@@ -59,6 +71,7 @@ export const updateProductAction = async ({
       company,
       range,
       id,
+      option_gaz: optionGaz,
     });
     revalidatePath("/dashboard/products");
     revalidatePath("/imb/products");

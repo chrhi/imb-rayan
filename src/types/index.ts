@@ -25,4 +25,5 @@ export type TProduct = {
   range: string;
   description: any;
   company: string;
+  optionGaz: boolean;
 };

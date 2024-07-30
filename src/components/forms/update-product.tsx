@@ -43,7 +43,7 @@ export const productSchema = z.object({
     message: "Must be at least 1 character",
   }),
   description: z.any(),
-
+  optionGaz: z.boolean(),
   status: z.string(),
   range: z.string(),
   company: z.string(),
@@ -91,6 +91,7 @@ export function UpdateProductForm({ product }: { product: TProduct }) {
       name: product.name,
       status: product.status,
       description: product.description,
+      optionGaz: product.optionGaz,
     },
   });
 

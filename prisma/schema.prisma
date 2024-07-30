@@ -20,6 +20,8 @@ model Product {
   description                        Json?
   status                             String   @default("PUBLSIHED")
   images                             Json?
-  company                            String  @default("IMB")
+  company                            String   @default("IMB")
   range                              String 
+  option_gaz                         Boolean  @default(false)
+  productPdf                         String?
 }

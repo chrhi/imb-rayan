@@ -11,7 +11,7 @@ import {
 import { Product } from "@prisma/client";
 import { TProduct } from "@/types";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import {
@@ -23,9 +23,10 @@ import {
   ShoppingBasket,
 } from "lucide-react";
 import dynamic from "next/dynamic";
-import { BasketStore } from "@/lib/zustand";
+import { BasketStore, useOpenGazSelectionAction } from "@/lib/zustand";
 import { Zoom } from "./zoom-image";
 import { Skeleton } from "./ui/skeleton";
+import OptionGaz from "./modals/option-gaz";
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -67,16 +68,19 @@ const modules = {
 };
 
 const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
+  const [isGaz, setIsGaz] = useState<boolean>(false);
+
   const [selectedImage, setSelectedImage] = React.useState<string>(
     product.images[0]?.url || ""
   );
 
   const addProduct = BasketStore((item) => item.addProduct);
 
-  console.log(product?.description);
+  const setIsOpen = useOpenGazSelectionAction((item) => item.setIsOpen);
 
   return (
     <>
+      <OptionGaz isGaz={isGaz} setIsGaz={setIsGaz} />
       <div className="w-full min-h-[600px] h-fit mx-auto  grid gap-x-8  grid-cols-1 md:grid-cols-3">
         <div className="w-full h-[600px] flex  my-20  col-span-2 pr-8 gap-x-4 ">
           <div className="w-[20%] h-full flex justify-start  ">
@@ -128,7 +132,10 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
 
             <Button
               onClick={() => {
-                addProduct(product);
+                if (product.optionGaz) {
+                  setIsOpen(true);
+                }
+                addProduct({ ...product, optionGaz: isGaz });
               }}
               className="bg-primary h-[50px] text-xl font-bold gap-x-4"
               size={"lg"}

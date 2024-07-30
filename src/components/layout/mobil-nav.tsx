@@ -18,12 +18,12 @@ export default function MobileNav() {
     <Sheet open={opne} onOpenChange={(value) => setOpen(value)}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="lg:hidden">
-          <Menu className="w-6 h-6 text-black " />
+          <Menu className="w-12 h-12 text-black " />
         </Button>
       </SheetTrigger>
 
       <SheetContent className="w-full z-[9999]">
-        <SheetHeader>
+        <SheetHeader className="flex-col">
           <SheetTitle>
             <span className="text-primary">IMB</span> industrie
           </SheetTitle>

@@ -2,7 +2,6 @@
 
 import { catchError } from "@/lib/utils";
 import { db } from "..";
-import { Prisma } from "@prisma/client";
 
 export const insertProduct = async ({
   description,
@@ -11,6 +10,7 @@ export const insertProduct = async ({
   company,
   range,
   status,
+  option_gaz,
 }: {
   name: string;
   description: any;
@@ -18,6 +18,7 @@ export const insertProduct = async ({
   range: string;
   company: string;
   status: string;
+  option_gaz: boolean;
 }) => {
   try {
     const item = await db.product.create({
@@ -28,6 +29,7 @@ export const insertProduct = async ({
         range,
         company,
         status,
+        option_gaz,
       },
     });
   } catch (err) {
@@ -42,6 +44,7 @@ export const updateProduct = async ({
   range,
   status,
   id,
+  option_gaz,
 }: {
   name: string;
   description: any;
@@ -50,6 +53,7 @@ export const updateProduct = async ({
   company: string;
   status: string;
   id: string;
+  option_gaz: boolean;
 }) => {
   try {
     const item = await db.product.update({
@@ -60,6 +64,7 @@ export const updateProduct = async ({
         range,
         company,
         status,
+        option_gaz,
       },
       where: {
         id,
