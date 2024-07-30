@@ -1,5 +1,6 @@
 "use server";
 
+import ContactEmail from "@/emails/contact-email";
 import { sendOrderEmail } from "@/lib/resend";
 import { TProduct } from "@/types";
 
@@ -24,4 +25,18 @@ export const sendOrderEmailAction = async (params: Params) => {
 
 export const sendDetailsEmailAction = () => {};
 
-export const sendInquiryEmailAction = () => {};
+type InquiryEmailParams = {
+  email: string;
+  phone: string;
+  fristName: string;
+  lastName: string;
+  messageDetails: string;
+};
+
+export const sendInquiryEmailAction = async (params: InquiryEmailParams) => {
+  try {
+    await ContactEmail({ ...params });
+  } catch (err) {
+    console.log(err);
+  }
+};

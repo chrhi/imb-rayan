@@ -17,8 +17,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendOrderEmailAction } from "@/actions/email";
 import { BasketStore } from "@/lib/zustand";
-import { Loader } from "lucide-react";
+import { Loader, SendHorizontal } from "lucide-react";
 import React from "react";
+import { useRouter } from "next13-progressbar";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -32,6 +33,9 @@ export function CofirmeOrderForm() {
   const products = BasketStore((item) => item.products);
 
   const [loading, setLoading] = React.useState<boolean>(false);
+  const clearItems = BasketStore((item) => item.clear);
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,7 +59,10 @@ export function CofirmeOrderForm() {
         phone: values.phoneNumber,
         products: products,
       });
+
+      router.push("/confirme-order/thank-you");
       setLoading(false);
+      clearItems();
     } catch (err) {
       setLoading(false);
       console.error(err);
@@ -152,6 +159,7 @@ export function CofirmeOrderForm() {
         >
           {loading && <Loader className="mr-2 w-4 h-4 animate-spin" />}
           Envoyer ma commande
+          <SendHorizontal className="w-4 h-4 ml-2" />
         </Button>
       </form>
     </Form>

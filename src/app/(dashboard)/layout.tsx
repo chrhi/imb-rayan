@@ -12,7 +12,7 @@ export default function DashboardLayout({
         <Sidebar />
       </TooltipProvider>
 
-      <div className="w-[calc(100%-80px)] ml-[56px] h-fit flex flex-col">
+      <div className="w-[calc(100%-80px)] bg-gray-100  ml-[56px] h-fit flex flex-col">
         {children}
       </div>
     </div>

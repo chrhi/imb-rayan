@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +15,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
+import { Loader, SendHorizontal } from "lucide-react";
+import { useState } from "react";
+import { sendInquiryEmailAction } from "@/actions/email";
 
 const formSchema = z.object({
   phone_number: z.string(),
@@ -25,7 +27,7 @@ const formSchema = z.object({
 });
 
 export function ContactUsForm() {
-  // 1. Define your form.
+  const [loading, setIsLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,8 +38,22 @@ export function ContactUsForm() {
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {}
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsLoading(true);
+      await sendInquiryEmailAction({
+        email: values.email,
+        fristName: values.fullname,
+        lastName: values.fullname,
+        messageDetails: values.message,
+        phone: values.phone_number,
+      });
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
+  }
   return (
     <div className="w-[600px] h-[600px] rounded-2xl border-2 shadow-xl p-8">
       <Form {...form}>
@@ -63,7 +79,7 @@ export function ContactUsForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="example@gmail.com" {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -77,7 +93,7 @@ export function ContactUsForm() {
               <FormItem>
                 <FormLabel>Numéro de téléphone</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="+213..." {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -92,7 +108,7 @@ export function ContactUsForm() {
                 <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Type your message here."
+                    placeholder="Tapez votre message ici."
                     id="message"
                   />
                 </FormControl>
@@ -101,7 +117,11 @@ export function ContactUsForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Envoyer le message</Button>
+          <Button disabled={loading} type="submit">
+            {loading && <Loader className="mr-2 w-4 h-4 animate-spin" />}
+            Envoyer le message
+            <SendHorizontal className="w-4 h-4 ml-2" />
+          </Button>
         </form>
       </Form>
     </div>

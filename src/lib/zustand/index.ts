@@ -1,4 +1,5 @@
 import { TProduct } from "@/types";
+import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
 interface StateShape {
@@ -17,11 +18,33 @@ export const useOpenProductDeleteAction = create<StateShape>()((set) => ({
 
 interface BasketShape {
   addProduct: (product: TProduct) => void;
+  deleteItem: (product: TProduct) => void;
+  clear: () => void;
   products: TProduct[];
 }
 
-export const BasketStore = create<BasketShape>()((set, get) => ({
-  products: [],
-  addProduct: (product: TProduct) =>
-    set({ products: [...get().products, product] }),
-}));
+export const BasketStore = create<BasketShape>()(
+  persist(
+    (set, get) => ({
+      products: [],
+      addProduct: (product: TProduct) =>
+        set({
+          products:
+            get().products.length > 0
+              ? [...get().products, product]
+              : [product],
+        }),
+      clear() {
+        set({ products: [] });
+      },
+      deleteItem(product) {
+        set({
+          products: get().products.filter((item) => item.id === product.id),
+        });
+      },
+    }),
+    {
+      name: "editor state",
+    }
+  )
+);

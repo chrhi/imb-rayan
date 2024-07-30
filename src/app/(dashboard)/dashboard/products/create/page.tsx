@@ -12,7 +12,7 @@ import type { FC } from "react";
 const page: FC = async ({}) => {
   return (
     <MaxWidthWrapper>
-      <div className="w-full h-fit  min-h-screen flex flex-col">
+      <div className="w-full h-fit  min-h-screen flex flex-col bg-gray-100 ">
         <div className="w-full h-[100px] flex items-center justify-start">
           <Breadcrumb>
             <BreadcrumbList>

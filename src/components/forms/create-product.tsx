@@ -10,11 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,14 +27,15 @@ import { useState } from "react";
 import { FileDialog } from "../file-dialog";
 import { FileWithPreview } from "@/types";
 import { useRouter } from "next/navigation";
-import { catchError, isArrayOfFile } from "@/lib/utils";
+import { catchError, isArrayOfFile, toReadableSentence } from "@/lib/utils";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { Zoom } from "../zoom-image";
 import Image from "next/image";
 import { createProduct } from "@/actions/products";
-import { Loader } from "lucide-react";
+import { FileUp, Loader } from "lucide-react";
 import dynamic from "next/dynamic";
+import { Textarea } from "../ui/textarea";
 
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -43,7 +45,7 @@ export const productSchema = z.object({
     message: "Must be at least 1 character",
   }),
   description: z.any(),
-
+  option_gaz: z.any(),
   status: z.string(),
   range: z.string(),
   company: z.string(),
@@ -132,7 +134,7 @@ export function CreateProductForm() {
     await mutateAsync(data);
   }
   return (
-    <div className="w-full h-[300px] ">
+    <div className="w-full min-h-[300px] h-fit bg-gray-100 mb-10  ">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="w-full h-full grid md:grid-cols-3 grid-cols-1 gap-8">
@@ -156,7 +158,7 @@ export function CreateProductForm() {
                 control={form.control}
                 name="description"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="min-h-[130px] h-fit">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                       <ReactQuill
@@ -204,10 +206,94 @@ export function CreateProductForm() {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Document technique</FormLabel>
+                    <FormControl>
+                      <div className="w-full h-[100px] flex items-center justify-center   border border-gray-400 border-dashed rounded-2xl">
+                        <Button className="text-white bg-red-500 hover:bg-red-700">
+                          Charger un PDF <FileUp className="w-4 h-4 mx-2" />
+                        </Button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="w-full h-[50px] flex items-center justify-start">
+                <span className="text-lg font-bold">Détails techniques</span>
+              </div>
+
+              <div className="w-full h-fit grid grid-cols-3 gap-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Reference</FormLabel>
+                      <FormControl>
+                        <Textarea className="resize-none" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Matiere</FormLabel>
+                      <FormControl>
+                        <Textarea className="resize-none" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Gas</FormLabel>
+                      <FormControl>
+                        <Textarea className="resize-none" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Puissance</FormLabel>
+                      <FormControl>
+                        <Textarea className="resize-none" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="w-full h-full   flex flex-col gap-y-8">
-              <div className="w-full p-4 h-[500px] bg-white rounded-2xl  flex flex-col gap-y-4 border shadow">
+              <div className="w-full p-4 h-[450px] bg-white rounded-2xl  flex flex-col gap-y-4 border shadow">
                 <FormField
                   control={form.control}
                   name="status"
@@ -224,8 +310,8 @@ export function CreateProductForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="DRAFT">draft</SelectItem>
-                          <SelectItem value="PUBLISHED">published</SelectItem>
+                          <SelectItem value="DRAFT">Brouillon</SelectItem>
+                          <SelectItem value="PUBLISHED">Publié</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -245,7 +331,7 @@ export function CreateProductForm() {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select product status" />
+                            <SelectValue placeholder="sélectionner une entreprise" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -270,21 +356,47 @@ export function CreateProductForm() {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select product status" />
+                            <SelectValue placeholder="sélectionner" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="SERIE_700">SERIE_700</SelectItem>
-                          <SelectItem value="SERIE_700ECO">
-                            SERIE_700ECO
+                          <SelectItem value="SERIE_700">
+                            {toReadableSentence("SERIE_700")}
                           </SelectItem>
-                          <SelectItem value="SERIE_900">SERIE_900</SelectItem>
+                          <SelectItem value="SERIE_700ECO">
+                            {toReadableSentence("SERIE_700ECO")}
+                          </SelectItem>
+                          <SelectItem value="SERIE_900">
+                            {toReadableSentence("SERIE_900")}
+                          </SelectItem>
                           <SelectItem value="ELEMENTS_NEUTRES">
-                            ELEMENTS_NEUTRES
+                            {toReadableSentence("ELEMENTS_NEUTRES")}
                           </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="option_gaz"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                      <div className="space-y-0.5">
+                        <FormLabel>Option gaz éléctrique</FormLabel>
+                        <FormDescription>
+                          afficher au client la possibilité de choisir entre le
+                          gaz ou l&apos;électrique
+                        </FormDescription>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
                     </FormItem>
                   )}
                 />

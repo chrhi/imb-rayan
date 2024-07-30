@@ -69,16 +69,6 @@ export const ContactEmail = ({
           </Text>
         </Section>
         <Hr style={global.hr} />
-        <Section style={global.defaultPadding}>
-          <Text style={adressTitle}>Produits Commandés</Text>
-          <Text style={{ ...global.text, fontSize: 14 }}>
-            Cuisinie de 4plaques sur four
-          </Text>
-          <Text style={{ ...global.text, fontSize: 14 }}>
-            Cuisinie de 4plaques sur four
-          </Text>
-        </Section>
-        <Hr style={global.hr} />
       </Container>
     </Body>
   </Html>

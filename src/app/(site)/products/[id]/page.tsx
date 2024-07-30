@@ -60,6 +60,33 @@ const Page = async ({ params }: PageProps) => {
           <ProductShowcase product={product} />
         </div>
       </MaxWidthWrapper>
+
+      <div className="w-full h-fit min-h-[500px] bg-white py-4 mt-8">
+        <MaxWidthWrapper className="h-full space-y-5">
+          <div className="w-full h-[50px] flex items-center justify-between">
+            <h2 className="text-5xl font-bold text-start text-[#DC4955]">
+              donwload detail PDF
+            </h2>
+          </div>
+
+          <div className="w-[80%] mx-auto h-[350px] flex items-center justify-between gap-x-4">
+            <Image
+              alt="file pdf image"
+              src="/file 1.png"
+              width={150}
+              height={150}
+              loading="eager"
+            />
+
+            <Button className="w-[400px] h-[70px] rounded-xl bg-[#DC4955] hover:bg-red-700 transition-all duration-700 flex items-center justify-center gap-x-4">
+              <span className="text-white text-3xl">Télécharger</span>
+
+              <ArrowBigDownDash className="w-8 h-8 text-white" />
+            </Button>
+          </div>
+        </MaxWidthWrapper>
+      </div>
+
       <div className="w-full h-fit min-h-[500px] bg-[#F1F3FF] py-4">
         <MaxWidthWrapper className="h-full space-y-5">
           <div className="w-full h-[50px] flex items-center justify-center">
@@ -91,32 +118,6 @@ const Page = async ({ params }: PageProps) => {
                 />
               );
             })}
-          </div>
-        </MaxWidthWrapper>
-      </div>
-
-      <div className="w-full h-fit min-h-[500px] bg-white py-4 mt-8">
-        <MaxWidthWrapper className="h-full space-y-5">
-          <div className="w-full h-[50px] flex items-center justify-between">
-            <h2 className="text-5xl font-bold text-start text-[#DC4955]">
-              donwload detail PDF
-            </h2>
-          </div>
-
-          <div className="w-[80%] mx-auto h-[350px] flex items-center justify-between gap-x-4">
-            <Image
-              alt="file pdf image"
-              src="/file 1.png"
-              width={150}
-              height={150}
-              loading="eager"
-            />
-
-            <Button className="w-[400px] h-[70px] rounded-xl bg-[#DC4955] hover:bg-red-700 transition-all duration-700 flex items-center justify-center gap-x-4">
-              <span className="text-white text-3xl">Télécharger</span>
-
-              <ArrowBigDownDash className="w-8 h-8 text-white" />
-            </Button>
           </div>
         </MaxWidthWrapper>
       </div>

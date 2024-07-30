@@ -1,8 +1,6 @@
 "use client";
 
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { Button } from "@/components/ui/button";
-import { ChevronDown, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
@@ -51,9 +49,7 @@ const Footer: FC = ({}) => {
             <Link href="#">
               <span className="text-gray-50 ">Carrières</span>
             </Link>
-            <Link href="#">
-              <span className="text-gray-50 ">Blog</span>
-            </Link>
+
             <Link href="#">
               <span className="text-gray-50 ">Contactez-nous</span>
             </Link>
@@ -64,16 +60,28 @@ const Footer: FC = ({}) => {
                 Réseaux sociaux
               </span>
             </Link>
-            <Link href="#">
+            <Link
+              target="_blank"
+              href="https://www.facebook.com/IMBIndustrie?locale=es_LA"
+            >
               <span className="text-gray-50 ">Facebook</span>
             </Link>
-            <Link href="#">
+            <Link
+              target="_blank"
+              href="https://www.instagram.com/imb_industrie/"
+            >
               <span className="text-gray-50 ">Instagram</span>
             </Link>
-            <Link href="#">
+            <Link
+              target="_blank"
+              href="https://www.linkedin.com/company/i-m-b-industrie/"
+            >
               <span className="text-gray-50 ">LinkedIn</span>
             </Link>
-            <Link href="#">
+            <Link
+              target="_blank"
+              href="https://www.youtube.com/@imbindustrie8199"
+            >
               <span className="text-gray-50 ">YouTube</span>
             </Link>
           </div>

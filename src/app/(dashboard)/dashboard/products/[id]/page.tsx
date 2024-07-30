@@ -9,7 +9,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { FC } from "react";
 
 interface PageProps {
   params: { id: string };

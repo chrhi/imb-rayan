@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ image, range, title, id }) => {
           fill
         />
       </div>
-      <Link href={`/imb/products/${id}`}>
+      <Link href={`/products/${id}`}>
         <span className="text-lg text-[#5B5B5B]  font-bold text-start hover:text-blue-500 hover:underline transition-all">
           {title}
         </span>

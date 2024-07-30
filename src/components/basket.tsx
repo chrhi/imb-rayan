@@ -9,7 +9,13 @@ import {
 
 import type { FC } from "react";
 import { Button, buttonVariants } from "./ui/button";
-import { MoveRight, ShoppingBag, ShoppingCart } from "lucide-react";
+import {
+  MoveRight,
+  ShoppingBag,
+  ShoppingBasket,
+  ShoppingCart,
+  Trash2,
+} from "lucide-react";
 import { BasketStore } from "@/lib/zustand";
 import Image from "next/image";
 import { ScrollArea } from "./ui/scroll-area";
@@ -20,16 +26,18 @@ interface BasketProps {}
 
 const Basket: FC = ({}) => {
   const products = BasketStore((item) => item.products);
+
+  const clearItems = BasketStore((item) => item.clear);
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button
           variant={"ghost"}
-          className=" flex items-center justify-center  relative border-black"
+          className=" flex items-center justify-center  relative "
         >
-          <ShoppingBag className="w-6 h-6 " />
+          <ShoppingBasket className="w-6 h-6 text-orange-700" />
 
-          {products.length !== 0 && (
+          {products.length > 0 && (
             <span className="w-5 h-5 bg-red-500  rounded-full p-1 font-bold absolute top-0 right-0 text-white flex items-center justify-center">
               {products?.length}
             </span>
@@ -37,8 +45,12 @@ const Basket: FC = ({}) => {
         </Button>
       </SheetTrigger>
       <SheetContent>
-        <SheetHeader>
+        <SheetHeader className="w-full h-fit flex items-center justify-between">
           <SheetTitle>Panier</SheetTitle>
+
+          <Button size="icon" variant={"ghost"} onClick={clearItems}>
+            <Trash2 className="w-4 h-4 text-black" />
+          </Button>
         </SheetHeader>
         {products?.length === 0 ? (
           <div className="w-full h-full flex flex-col gap-y-4 items-center justify-center">
@@ -54,27 +66,29 @@ const Basket: FC = ({}) => {
         ) : (
           <div className="w-full h-full flex flex-col gap-y-4 items-start justify-start pb-5 ">
             <ScrollArea className="h-screen w-full rounded-md flex flex-col  p-4">
-              {products?.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    className="w-full h-[150px] my-4  flex items-center gap-x-2"
-                  >
-                    <div className="w-[150px]  h-[150px] border border-black  relative  rounded-xl">
-                      <Image
-                        src={item?.images[0]?.url}
-                        alt={item.name}
-                        fill
-                        className="object-cover rounded-xl"
-                      />
-                    </div>
+              {products &&
+                products.length > 0 &&
+                products?.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className="w-full h-[150px] my-4  flex items-center gap-x-2"
+                    >
+                      <div className="w-[150px]  h-[150px] border border-black  relative  rounded-xl">
+                        <Image
+                          src={item?.images[0]?.url}
+                          alt={item.name}
+                          fill
+                          className="object-cover rounded-xl"
+                        />
+                      </div>
 
-                    <div className="w-fit min-w-[150px] h-[150px] flex flex-col gap-y-2 justify-start items-start">
-                      <span className="text-start text-lg">{item.name}</span>
+                      <div className="w-fit min-w-[150px] h-[150px] flex flex-col gap-y-2 justify-start items-start">
+                        <span className="text-start text-lg">{item.name}</span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </ScrollArea>
 
             <div className="w-full h-[100px] flex items-center justify-center">

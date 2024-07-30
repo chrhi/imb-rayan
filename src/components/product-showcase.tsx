@@ -33,23 +33,23 @@ interface ProductShowcaseProps {
 
 const ItemDetails = [
   {
-    icon: <Info className="w-6 h-6 text-white" />,
+    icon: <Info className="w-8 h-8 text-white" />,
     title: "Reference",
   },
   {
-    icon: <Layers3 className="w-6 h-6 text-white" />,
+    icon: <Layers3 className="w-8 h-8 text-white" />,
     title: "Matiere",
   },
   {
-    icon: <Flame className="w-6 h-6 text-white" />,
+    icon: <Flame className="w-8 h-8 text-white" />,
     title: "Gaz",
   },
   {
-    icon: <Cable className="w-6 h-6 text-white" />,
+    icon: <Cable className="w-8 h-8 text-white" />,
     title: "Puissance Gaz ",
   },
   {
-    icon: <Scale3D className="w-6 h-6 text-white" />,
+    icon: <Scale3D className="w-8 h-8 text-white" />,
     title: "(chambre) LxPxH (mm)",
   },
 ];
@@ -108,7 +108,7 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
           </div>
 
           <div className="w-[80%]  h-[600px]  flex flex-col gap-y-4   rounded-2xl relative">
-            <div className="w-full  h-[530px]    border border-black rounded-2xl relative">
+            <div className="w-full  h-[530px]     rounded-2xl relative">
               <Image
                 alt="image"
                 src={selectedImage}
@@ -138,7 +138,7 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
                   key={item.title}
                   className="w-full h-[80px] flex items-center justify-start  rounded-xl bg-primary"
                 >
-                  <div className="w-[40%] h-full bg-black  flex items-center justify-start gap-x-4 px-2 rounded-xl ">
+                  <div className="w-[40%] h-full bg-black  rounded-r-none flex items-center justify-start gap-x-4 px-2 rounded-xl ">
                     {item.icon}
                     <span className="text-white font-bold text-xl">
                       {item.title}

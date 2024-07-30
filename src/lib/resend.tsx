@@ -1,4 +1,5 @@
 import { OrderEmail } from "@/emails/order-email";
+import { ContactEmail } from "@/emails/contact-email";
 import { TProduct } from "@/types";
 import { Resend } from "resend";
 
@@ -18,7 +19,7 @@ export const sendInquiryEmail = async (params: InquiryEmailParams) => {
     from: "imb@cravvelo.com",
     to: params.email,
     subject: "inquiry email",
-    react: <OrderEmail {...params} />,
+    react: <ContactEmail {...params} />,
   });
 };
 
