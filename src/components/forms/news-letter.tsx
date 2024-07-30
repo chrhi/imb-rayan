@@ -3,18 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { rootAdminSignInAction } from "@/actions/auth";
 import { Loader, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -37,10 +34,10 @@ export function NewsLetterForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
       setIsLoading(true);
 
-      router.push("/dashboard");
+      toast("nous vous envoyons un e-mail, vérifiez votre boîte de réception");
+      form.reset();
     } catch (err) {
       // displaying an error to the user
 

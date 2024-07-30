@@ -20,6 +20,7 @@ import { BasketStore } from "@/lib/zustand";
 import { Loader, SendHorizontal } from "lucide-react";
 import React from "react";
 import { useRouter } from "next13-progressbar";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -62,6 +63,8 @@ export function CofirmeOrderForm() {
 
       router.push("/confirme-order/thank-you");
       setLoading(false);
+      toast("votre e mail a été envoyé");
+      form.reset();
       clearItems();
     } catch (err) {
       setLoading(false);

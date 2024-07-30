@@ -18,6 +18,7 @@ import { Textarea } from "../ui/textarea";
 import { Loader, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { sendInquiryEmailAction } from "@/actions/email";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   phone_number: z.string(),
@@ -49,6 +50,8 @@ export function ContactUsForm() {
         phone: values.phone_number,
       });
       setIsLoading(false);
+      toast("votre e mail a été envoyé");
+      form.reset();
     } catch (err) {
       console.log(err);
       setIsLoading(false);

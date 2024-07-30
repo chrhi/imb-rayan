@@ -28,7 +28,7 @@ type Params = {
   messageDetails: string;
 };
 
-export const ContactEmail = ({
+export const DetailsEmail = ({
   email,
   fristName,
   lastName,
@@ -37,36 +37,44 @@ export const ContactEmail = ({
 }: Params) => (
   <Html>
     <Head />
-    <Preview>Contact email</Preview>
+    <Preview>Dtails email</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={track.container}>
           <Row>
             <Column>
               <Text style={global.paragraphWithBold}>
-                {fristName || "abdellah"}
+                {"I.M.B Industrie Sarl"}
               </Text>
-              <Text style={track.number}>{lastName || "chehri"}</Text>
+              <Text style={track.number}>
+                {"1, bd Mohamed Khemisti 16100 Dar El Beida Alger -Algérie"}
+              </Text>
             </Column>
             <Column align="right">
               <Text style={global.paragraphWithBold}>
-                {phone || "201389uyt5666"}
+                {"+213 23 67 61 62 – 63 – 64"}
               </Text>
-              <Text style={track.number}>
-                {email || "mahdi.chahei55@gmail.com"}
-              </Text>
+              <Text style={track.number}>{"info@imb-industrie.com"}</Text>
             </Column>
           </Row>
         </Section>
         <Hr style={global.hr} />
         <Section style={message}>
-          <Heading style={global.heading}>
-            Email pour une nouvelle demande de commande
-          </Heading>
-          <Text style={global.text}>
-            {messageDetails ||
-              "A person does not have an understanding of the religion of Islam until he thinks of a hardship as being a blessing, and comfort and luxury as being a tribulation"}
-          </Text>
+          <Heading style={global.heading}>Catalogue général I.M.B</Heading>
+          <a
+            style={{
+              width: "100%",
+              height: "50px",
+              borderRadius: "12px",
+              background: "#DC4955",
+              color: "#ffffff",
+              padding: "16px",
+              cursor: "pointer",
+              marginTop: "20px",
+            }}
+          >
+            Télécharger
+          </a>
         </Section>
         <Hr style={global.hr} />
       </Container>
@@ -74,7 +82,7 @@ export const ContactEmail = ({
   </Html>
 );
 
-export default ContactEmail;
+export default DetailsEmail;
 
 const paddingX = {
   paddingLeft: "40px",
@@ -158,17 +166,3 @@ const message = {
   padding: "40px 74px",
   textAlign: "center",
 } as React.CSSProperties;
-
-const adressTitle = {
-  ...paragraph,
-  fontSize: "15px",
-  fontWeight: "bold",
-};
-
-const recomendationsText = {
-  margin: "0",
-  fontSize: "15px",
-  lineHeight: "1",
-  paddingLeft: "10px",
-  paddingRight: "10px",
-};
