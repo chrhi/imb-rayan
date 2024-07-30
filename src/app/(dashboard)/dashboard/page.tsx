@@ -59,9 +59,6 @@ const page: FC = async ({}) => {
             bienvenue sur le tableau de bord 😊
           </h1>
         </div>
-        <div className="w-full h-fit flex flex-col mt-8 ">
-          <ChartComponent />
-        </div>
       </div>
     </MaxWidthWrapper>
   );

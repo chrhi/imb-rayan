@@ -72,26 +72,6 @@ const Sidebar: FC = ({}) => {
             Products
           </TooltipContent>
         </Tooltip>
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <Link
-              href="/dashboard/customers"
-              className={`flex h-9 w-9 items-center justify-center rounded-lg  transition-colors hover:text-foreground md:h-8 md:w-8 ${
-                isPathActive({
-                  currectPath: "/dashboard/customers",
-                })
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground"
-              } `}
-            >
-              <Users2 className="h-5 w-5" />
-              <span className="sr-only">Customers</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right" className="bg-black text-white">
-            Customers
-          </TooltipContent>
-        </Tooltip>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
         <Tooltip delayDuration={0}>
@@ -102,7 +82,7 @@ const Sidebar: FC = ({}) => {
                 isPathActive({
                   currectPath: "/dashboard/settings",
                 })
-                  ? "bg-accent text-accent-foreground"
+                  ? "bg-accent text-accent-foreground "
                   : "text-muted-foreground"
               } `}
             >

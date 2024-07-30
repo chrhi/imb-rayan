@@ -30,7 +30,7 @@ const NavBar: FC = ({}) => {
       <MaxWidthWrapper className="h-[80px]  flex items-center justify-between">
         <div
           onClick={() => router.push("/")}
-          className="w-[70px] h-[70px] flex items-center justify-center cursor-pointer"
+          className="w-[150px] h-[70px] flex items-center justify-center cursor-pointer gap-x-2"
         >
           <Image
             className=" object-contain"
@@ -38,6 +38,13 @@ const NavBar: FC = ({}) => {
             alt="logo"
             width={80}
             height={80}
+          />
+          <Image
+            className=" object-contain"
+            src={"/irc.webp"}
+            alt="logo"
+            width={60}
+            height={60}
           />
         </div>
         <div className="w-full h-full  items-center justify-end hidden lg:flex  ">

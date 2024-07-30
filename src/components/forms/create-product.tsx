@@ -238,7 +238,7 @@ export function CreateProductForm() {
                   name="company"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Company</FormLabel>
+                      <FormLabel>Entreprise</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -263,7 +263,7 @@ export function CreateProductForm() {
                   name="range"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Range</FormLabel>
+                      <FormLabel>Gamme </FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
