@@ -25,6 +25,7 @@ import {
 import dynamic from "next/dynamic";
 import { BasketStore } from "@/lib/zustand";
 import { Zoom } from "./zoom-image";
+import { Skeleton } from "./ui/skeleton";
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -181,3 +182,65 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ product }) => {
 };
 
 export default ProductShowcase;
+
+export const ProductShowcaseLoader = () => {
+  return (
+    <>
+      <div className="w-full min-h-[600px] h-fit mx-auto  grid gap-x-8  grid-cols-1 md:grid-cols-3">
+        <div className="w-full h-[600px] flex  my-20  col-span-2 pr-8 gap-x-4 ">
+          <div className="w-[20%] h-full flex justify-start  ">
+            <Skeleton className="w-full h-full " />
+          </div>
+
+          <div className="w-[80%]  h-[600px]  flex flex-col gap-y-4   rounded-2xl relative">
+            <div className="w-full  h-[530px]     rounded-2xl relative">
+              <Skeleton className="w-full h-full " />
+            </div>
+
+            <Button
+              className="bg-primary h-[50px] text-xl font-bold gap-x-4"
+              size={"lg"}
+            >
+              <ShoppingBasket className="w-6 h-6 text-white" />
+              Add aux panier
+            </Button>
+          </div>
+        </div>
+
+        <div className="w-full min-h-[300px]  h-[600px]  md:my-20  flex flex-col rounded-2xl gap-y-6">
+          <div className="w-full h-fit min-h-[100px]  flex flex-col  gap-y-2  ">
+            {ItemDetails.map((item) => {
+              return (
+                <div
+                  key={item.title}
+                  className="w-full h-[80px] flex items-center justify-start  rounded-xl bg-primary"
+                >
+                  <div className="w-[40%] h-full bg-black  rounded-r-none flex items-center justify-start gap-x-4 px-2 rounded-xl ">
+                    {item.icon}
+                    <span className="text-white font-bold text-xl">
+                      {item.title}
+                    </span>
+                  </div>
+
+                  <div className=" w-[60%] h-[80px]  rounded-xl flex flex-col items-start justify-center pl-4 ">
+                    <span className="text-white font-bold text-xl">
+                      {item.text}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-fit min-h-[100px] gap-y-4  flex flex-col ">
+        <h2 className="text-4xl font-bold">Description</h2>
+
+        <div className="w-full h-fit ">
+          <Skeleton className="w-full h-[200px] " />
+        </div>
+      </div>
+    </>
+  );
+};

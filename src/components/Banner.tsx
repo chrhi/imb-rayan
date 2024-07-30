@@ -66,19 +66,7 @@ export default function Banner() {
                 />
               </div>
               <MaxWidthWrapper>
-                <div className="mx-auto max-w-2xl lg:mx-0">
-                  <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
-                    Fourniture d&apos;équipements pour grandes cuisines
-                  </h2>
-                  <p className="mt-6 text-lg leading-8 text-gray-300"></p>
-                  <Button
-                    variant={"ghost"}
-                    size={"lg"}
-                    className=" border-black border-[5px] text-white bg-black rounded-none"
-                  >
-                    Achetez maintenant
-                  </Button>
-                </div>
+                <div className="mx-auto h-[200px] max-w-2xl lg:mx-0"></div>
               </MaxWidthWrapper>
             </div>
           </CarouselItem>
@@ -116,26 +104,14 @@ export default function Banner() {
                 />
               </div>
               <MaxWidthWrapper>
-                <div className="mx-auto max-w-2xl lg:mx-0">
-                  <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                    Fourniture d&apos;équipements pour grandes cuisines
-                  </h2>
-                  <p className="mt-6 text-lg leading-8 text-gray-300"></p>
-                  <Button
-                    variant={"ghost"}
-                    size={"lg"}
-                    className=" border-white border-[5px] text-black bg-white rounded-none"
-                  >
-                    Achetez maintenant
-                  </Button>
-                </div>
+                <div className="mx-auto h-[200px] max-w-2xl lg:mx-0"></div>
               </MaxWidthWrapper>
             </div>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
       <div className="w-full h-[50px] absolute bottom-10 flex items-center justify-center gap-x-4 text-white">
-        {Array.from({ length: 5 }).map((_, index) => {
+        {Array.from({ length: 2 }).map((_, index) => {
           return (
             <button
               key={index}

@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProductCardProps {
   image: string;
@@ -30,3 +31,14 @@ const ProductCard: FC<ProductCardProps> = ({ image, range, title, id }) => {
 };
 
 export default ProductCard;
+
+export const ProductCardLoader = () => {
+  return (
+    <div className=" h-[350px] w-full sm:w-[250px] flex flex-col gap-y-4">
+      <div className="relative w-full h-[250px]  border aspect-square  rounded-lg">
+        <Skeleton className="w-full h-full " />
+      </div>
+      <Skeleton className="w-full h-[20px] " />
+    </div>
+  );
+};

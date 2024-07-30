@@ -2,8 +2,6 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import Image from "next/image";
 import type { FC } from "react";
 
-interface PageProps {}
-
 const Page: FC = ({}) => {
   return (
     <>
