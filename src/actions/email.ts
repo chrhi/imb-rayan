@@ -1,7 +1,6 @@
 "use server";
 
-import ContactEmail from "@/emails/contact-email";
-import { sendOrderEmail } from "@/lib/resend";
+import { sendInquiryEmail, sendOrderEmail } from "@/lib/resend";
 import { TProduct } from "@/types";
 
 type Params = {
@@ -35,7 +34,7 @@ type InquiryEmailParams = {
 
 export const sendInquiryEmailAction = async (params: InquiryEmailParams) => {
   try {
-    await ContactEmail({ ...params });
+    await sendInquiryEmail({ ...params });
   } catch (err) {
     console.log(err);
   }
