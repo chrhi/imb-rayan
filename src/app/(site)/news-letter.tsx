@@ -2,8 +2,6 @@ import { NewsLetterForm } from "@/components/forms/news-letter";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import type { FC } from "react";
 
-interface NewsLetterProps {}
-
 const NewsLetter: FC = ({}) => {
   return (
     <div className="w-full h-[400px] bg-[#F1F3FF] border-b border-black">
