@@ -16,6 +16,7 @@ import { Loader, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { sendDetailsEmailAction } from "@/actions/email";
 
 const formSchema = z.object({
   email: z.string(),
@@ -35,12 +36,15 @@ export function NewsLetterForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-
+      await sendDetailsEmailAction({
+        email: values.email,
+      });
       toast("nous vous envoyons un e-mail, vérifiez votre boîte de réception");
       form.reset();
+      setIsLoading(false);
     } catch (err) {
       // displaying an error to the user
-
+      setIsLoading(false);
       console.log(err);
     }
   }

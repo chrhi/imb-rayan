@@ -22,19 +22,9 @@ const baseUrl = process.env.VERCEL_URL
 
 type Params = {
   email: string;
-  phone: string;
-  fristName: string;
-  lastName: string;
-  messageDetails: string;
 };
 
-export const DetailsEmail = ({
-  email,
-  fristName,
-  lastName,
-  messageDetails,
-  phone,
-}: Params) => (
+export const DetailsEmail = ({ email }: Params) => (
   <Html>
     <Head />
     <Preview>Dtails email</Preview>

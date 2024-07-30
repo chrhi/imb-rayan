@@ -1,5 +1,6 @@
 import { OrderEmail } from "@/emails/order-email";
 import { ContactEmail } from "@/emails/contact-email";
+import { DetailsEmail } from "@/emails/details-email";
 import { TProduct } from "@/types";
 import { Resend } from "resend";
 
@@ -37,5 +38,18 @@ export const sendOrderEmail = async (params: OrderEmailParams) => {
     to: params.email,
     subject: "order email",
     react: <OrderEmail {...params} />,
+  });
+};
+
+type DetailsEmailParams = {
+  email: string;
+};
+
+export const sendDetailsEmail = async (params: DetailsEmailParams) => {
+  await resend.emails.send({
+    from: "imb@cravvelo.com",
+    to: params.email,
+    subject: "details  email",
+    react: <DetailsEmail {...params} />,
   });
 };
