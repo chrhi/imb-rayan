@@ -25,6 +25,7 @@ import { BasketStore, useOpenGazSelectionAction } from "@/lib/zustand";
 import { Zoom } from "./zoom-image";
 import { Skeleton } from "./ui/skeleton";
 import OptionGaz from "./modals/option-gaz";
+
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 

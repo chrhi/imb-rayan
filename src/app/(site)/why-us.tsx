@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { FC } from "react";
-
+import { cn } from "@/lib/utils";
+import { itim } from "@/lib/font"
 interface WhyUsProps {}
 
 const ITEMS = [
@@ -29,7 +30,7 @@ const ITEMS = [
 const WhyUs: FC = ({}) => {
   return (
     <div className="w-full min-h-[500px] h-fit flex flex-col gap-y-8 border-t items-center justify-between pt-10">
-      <h2 className="text-5xl font-bold">Pourquoi nous?</h2>
+      <h2 className={  cn("text-5xl font-bold" , itim.className)}>Pourquoi nous?</h2>
 
       <div className="w-full min-h-[250px] h-fit flex flex-col md:flex-row items-center justify-center gap-x-8">
         {ITEMS.map((item, index) => {
@@ -41,8 +42,8 @@ const WhyUs: FC = ({}) => {
               }`}
             >
               <Image 
-               width={120}
-               height={120}
+               width={100}
+               height={100}
               src={item.icon}
               alt={item.text}
               />

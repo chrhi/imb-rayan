@@ -9,8 +9,6 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next13-progressbar";
 import Basket from "../basket";
 
-
-
 const NavBar: FC = ({}) => {
   const router = useRouter();
 
@@ -36,13 +34,6 @@ const NavBar: FC = ({}) => {
             alt="logo"
             width={80}
             height={80}
-          />
-          <Image
-            className=" object-contain"
-            src={"/irc.webp"}
-            alt="logo"
-            width={60}
-            height={60}
           />
         </div>
         <div className="w-full h-full  items-center justify-end hidden lg:flex  ">

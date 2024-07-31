@@ -1,5 +1,7 @@
 import { NewsLetterForm } from "@/components/forms/news-letter";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { cn } from "@/lib/utils";
+import { itim } from "@/lib/font";
 import type { FC } from "react";
 
 const NewsLetter: FC = ({}) => {
@@ -8,7 +10,7 @@ const NewsLetter: FC = ({}) => {
       <MaxWidthWrapper className="h-full  max-w-screen-xl">
         <div className="w-full h-full  grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="w-full h-full flex items-center justify-center ">
-            <h2 className="text-5xl text-start font-bold">
+            <h2 className={cn("text-5xl text-start font-bold", itim.className)}>
               Pour vous <br /> renseigner et en <br /> savoir plus
             </h2>
           </div>

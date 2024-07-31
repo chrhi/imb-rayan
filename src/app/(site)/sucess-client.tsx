@@ -2,7 +2,9 @@
 import Image from "next/image";
 import type { FC } from "react";
 import { cn } from "@/lib/utils";
+import { itim } from "@/lib/font";
 import Marquee from "@/components/magicui/marquee";
+
 // https://like-manga.net/manga/apotheosis/12/
 //https://like-manga.net/manga/apotheosis/17/
 interface SucessClientProps {}
@@ -77,7 +79,9 @@ const ReviewCard = ({
 const SucessClient: FC = ({}) => {
   return (
     <section className="w-full h-fit min-h-[450px] flex flex-col  gap-y-12 mt-20 mb-10">
-      <h2 className="text-5xl font-bold text-center">Nos partenaires</h2>
+      <h2 className={cn("text-5xl font-bold text-center", itim.className)}>
+        Nos partenaires
+      </h2>
       <p className="text-xl text-center text-gray-500 my-4 max-w-3xl mx-auto">
         Nous pensons que les partenariats sont essentiels pour relever les défis
         du développement. Nous travaillons en collaboration avec des

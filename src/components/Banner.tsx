@@ -1,7 +1,6 @@
 "use client";
 
 import MaxWidthWrapper from "./max-width-wrapper";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
   Carousel,
@@ -66,7 +65,7 @@ export default function Banner() {
                 />
               </div>
               <MaxWidthWrapper>
-                <div className="mx-auto h-[200px] max-w-2xl lg:mx-0"></div>
+                <div className="mx-auto h-[300px] max-w-2xl lg:mx-0"></div>
               </MaxWidthWrapper>
             </div>
           </CarouselItem>
@@ -104,7 +103,7 @@ export default function Banner() {
                 />
               </div>
               <MaxWidthWrapper>
-                <div className="mx-auto h-[200px] max-w-2xl lg:mx-0"></div>
+                <div className="mx-auto h-[300px] max-w-2xl lg:mx-0"></div>
               </MaxWidthWrapper>
             </div>
           </CarouselItem>

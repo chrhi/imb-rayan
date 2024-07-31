@@ -9,7 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { FC } from "react";
-
+import { cn } from "@/lib/utils";
+import { itim } from "@/lib/font";
 interface PageProps {
   params: { id: string };
 }
@@ -53,7 +54,12 @@ const Page = async ({ params }: PageProps) => {
     <>
       <MaxWidthWrapper>
         <div className="w-full min-h-screen h-fit pt-10 flex flex-col gap-y-4 ">
-          <h1 className="text-4xl font-bold text-black text-start ">
+          <h1
+            className={cn(
+              "text-4xl font-bold text-black text-start ",
+              itim.className
+            )}
+          >
             {product?.name}
           </h1>
 
@@ -90,7 +96,7 @@ const Page = async ({ params }: PageProps) => {
       <div className="w-full h-fit min-h-[500px] bg-[#F1F3FF] py-4">
         <MaxWidthWrapper className="h-full space-y-5">
           <div className="w-full h-[50px] flex items-center justify-center">
-            <h2 className="text-5xl font-bold text-start">
+            <h2 className={cn("text-5xl font-bold text-start", itim.className)}>
               Produits similaires
             </h2>
           </div>
